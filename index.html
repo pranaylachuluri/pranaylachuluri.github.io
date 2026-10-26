@@ -151,6 +151,9 @@
   .job h3 { font-size: 1.12rem; }
   .job .where { color: var(--muted); font-size: 0.94rem; }
   .job p { margin: 8px 0 0; max-width: 66ch; text-wrap: pretty; }
+  .duties { list-style: disc; margin: 10px 0 0; padding-left: 1.1em; display: grid; gap: 5px; max-width: 66ch; }
+  .duties li::marker { color: var(--muted); }
+  .job .tags { margin-top: 10px; }
 
   /* Contact */
   .contact { padding-block: 72px 56px; display: grid; gap: 22px; }
@@ -392,7 +395,7 @@
     <div class="hero-text">
       <span class="eyebrow">Open to AI/ML, software engineering &amp; data science roles</span>
       <h1>I build models that <em>see</em> the world.</h1>
-      <p class="lede">I'm Pranay, a software and machine learning engineer focused on <strong>AI and computer vision</strong>. I'm doing my MS in Computer Science (AI/ML) at the <strong>University at Buffalo</strong>, where I research optical sensing for autonomous plastic sorting.</p>
+      <p class="lede">I'm Pranay, a software and machine learning engineer focused on <strong>AI and computer vision</strong>. I'm doing my MS in Computer Science (AI/ML) at the <strong>University at Buffalo</strong>, where I work on multi-sensor optical and infrared sensing for autonomous plastic sorting.</p>
       <div class="cta">
         <a class="btn primary" href="#projects">View projects</a>
         <a class="btn" href="https://github.com/pranaylachuluri" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>GitHub</a>
@@ -595,9 +598,9 @@
     <div class="sec-head"><h2 id="h-skills">Skills</h2></div>
     <div class="skills">
       <div class="group"><h3>Machine learning</h3><ul class="chips"><li>PyTorch</li><li>TensorFlow</li><li>Keras</li><li>Scikit-learn</li><li>CNNs</li><li>U-Net</li><li>Transfer learning</li></ul></div>
-      <div class="group"><h3>Computer vision</h3><ul class="chips"><li>OpenCV</li><li>YOLO</li><li>MediaPipe</li><li>Object detection</li><li>Image restoration</li><li>Signal processing</li></ul></div>
+      <div class="group"><h3>Computer vision</h3><ul class="chips"><li>OpenCV</li><li>YOLO</li><li>MediaPipe</li><li>Object detection</li><li>Image restoration</li><li>Signal processing</li><li>Hyperspectral imaging</li><li>Sensor calibration</li></ul></div>
       <div class="group"><h3>Languages &amp; data</h3><ul class="chips"><li>Python</li><li>Java</li><li>JavaScript</li><li>SQL</li><li>NumPy</li><li>Pandas</li><li>Matplotlib</li></ul></div>
-      <div class="group"><h3>Tools &amp; web</h3><ul class="chips"><li>Git</li><li>Linux</li><li>Jupyter</li><li>Colab</li><li>Gradio</li><li>Flask</li><li>React</li><li>MySQL</li></ul></div>
+      <div class="group"><h3>Tools &amp; web</h3><ul class="chips"><li>ROS 2</li><li>CVAT</li><li>FiftyOne</li><li>Git</li><li>Linux</li><li>Jupyter</li><li>Colab</li><li>Gradio</li><li>Flask</li><li>React</li><li>MySQL</li></ul></div>
     </div>
   </section>
 
@@ -605,11 +608,18 @@
     <div class="sec-head"><h2 id="h-exp">Experience</h2></div>
     <ol class="timeline">
       <li class="job">
-        <span class="when">2025 – now</span>
+        <span class="when">Sep 2025 – now</span>
         <div>
           <h3>Graduate Research Assistant</h3>
-          <div class="where">University at Buffalo · ASAP plastic-sort project</div>
-          <p>Collecting and validating visible and infrared optical measurements from cameras, photodetectors, filters and illumination rigs. This data feeds spectral analysis, sensor calibration and future ML-based plastic classification.</p>
+          <div class="where">University at Buffalo · ASAP (Affordable Scalable Autonomous Plastic-Sort)</div>
+          <p>ASAP is building a low-cost sensing system that identifies plastic types from how they interact with light, so they can be sorted automatically. I'm working in the data-collection phase.</p>
+          <ul class="duties">
+            <li>Run a multi-sensor rig of hyperspectral, RGB and thermal cameras plus a 4-chip mmWave radar on ROS 2.</li>
+            <li>Perform hyperspectral calibration (dark and white references, flat-field reflectance correction), multi-pose checkerboard calibration across cameras, and mmWave range calibration.</li>
+            <li>Capture synchronized static and conveyor-belt recordings of PET, HDPE and LDPE samples across 10 controlled light levels and several belt speeds.</li>
+            <li>Set up CVAT and FiftyOne for annotation and dataset management, toward ML-based polymer classification.</li>
+          </ul>
+          <div class="tags">ROS 2 · Hyperspectral imaging · Thermal · mmWave radar · Python · OpenCV · CVAT · FiftyOne</div>
         </div>
       </li>
       <li class="job">
