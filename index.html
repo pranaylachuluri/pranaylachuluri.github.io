@@ -1,256 +1,491 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="t-lab">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Pranay Lachuluri</title>
-<meta name="description" content="Pranay Lachuluri, MS Computer Science (AI/ML) student at the University at Buffalo, working on computer vision and machine learning.">
+<title>Pranay Lachuluri Portfolio</title>
+<meta name="description" content="Pranay Lachuluri, ML engineer focused on computer vision. MS Computer Science (AI/ML) at the University at Buffalo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
 <style>
-  /* Layout: one narrow left-aligned column, dates in a fixed gutter, metrics set in mono like instrument readouts */
+  /* Layout: wide 1120px canvas. Studio = split hero + 2-up image grid. Lab = dark, mono, project rows with a visible-to-IR spectrum rule. Bento = everything in tiles. */
   :root {
-    --bg: #f6f7f7;
-    --fg: #15191c;
-    --muted: #5b646c;
-    --line: #dfe3e3;
-    --accent: #2b55c9;
-    --chip: #eaeef4;
-    --sans: "Schibsted Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --bg: #fafafa; --surface: #ffffff; --fg: #111316; --muted: #5f656d; --line: #e5e7ea;
+    --accent: #3046ff; --accent-ink: #ffffff; --shot: #eef0f4; --shot-2: #d9dde6;
+    --display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+    --body: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+    --radius: 14px;
+    --h1-weight: 700;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #0e1113; --fg: #e7eaeb; --muted: #8e98a1; --line: #22282c; --accent: #8ea7ff; --chip: #171c22;
-      color-scheme: dark;
+      --bg: #0f1012; --surface: #17191c; --fg: #eceef0; --muted: #979ca3; --line: #26292e;
+      --accent: #7f8dff; --accent-ink: #0f1012; --shot: #1c1f24; --shot-2: #2a2e35; color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #0e1113; --fg: #e7eaeb; --muted: #8e98a1; --line: #22282c; --accent: #8ea7ff; --chip: #171c22;
-    color-scheme: dark;
+    --bg: #0f1012; --surface: #17191c; --fg: #eceef0; --muted: #979ca3; --line: #26292e;
+    --accent: #7f8dff; --accent-ink: #0f1012; --shot: #1c1f24; --shot-2: #2a2e35; color-scheme: dark;
+  }
+  :root.t-bento {
+    --bg: #eceee9; --surface: #ffffff; --fg: #1a1d1a; --muted: #616961; --line: #dcdfd8;
+    --accent: #0f766e; --accent-ink: #ffffff; --shot: #e3e7e0; --shot-2: #cbd2c8;
+    --display: "Instrument Serif", Georgia, "Times New Roman", serif;
+    --radius: 22px; --h1-weight: 400;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root.t-bento:not([data-theme="light"]) {
+      --bg: #101311; --surface: #191d1a; --fg: #e8ece8; --muted: #9aa39a; --line: #2a302b;
+      --accent: #4fd1c0; --accent-ink: #0d1110; --shot: #212622; --shot-2: #313831; color-scheme: dark;
+    }
+  }
+  :root.t-bento[data-theme="dark"] {
+    --bg: #101311; --surface: #191d1a; --fg: #e8ece8; --muted: #9aa39a; --line: #2a302b;
+    --accent: #4fd1c0; --accent-ink: #0d1110; --shot: #212622; --shot-2: #313831; color-scheme: dark;
+  }
+  /* Lab is a deliberately dark-only look */
+  html:root.t-lab {
+    --bg: #0a0f15; --surface: #101822; --fg: #dce5ee; --muted: #7d8ea0; --line: #1c2835;
+    --accent: #66ccff; --accent-ink: #0a0f15; --shot: #0e1620; --shot-2: #1f2d3c;
+    --display: "Geist Mono", ui-monospace, Menlo, monospace;
+    --radius: 6px; --h1-weight: 500; color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
-  body {
-    background: var(--bg);
-    color: var(--fg);
-    font: 400 16px/1.6 var(--sans);
-    -webkit-font-smoothing: antialiased;
-  }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  body { background: var(--bg); color: var(--fg); font: 400 16px/1.6 var(--body); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
   .wrap {
-    max-width: 720px;
-    margin: 0 auto;
-    padding-block: 72px 56px;
+    max-width: 1120px; margin: 0 auto;
     padding-left: max(20px, env(safe-area-inset-left, 0px));
     padding-right: max(20px, env(safe-area-inset-right, 0px));
-    display: grid;
-    gap: 64px;
   }
-  a { color: inherit; text-decoration-color: var(--line); text-underline-offset: 3px; text-decoration-thickness: 1px; }
-  a:hover { color: var(--accent); text-decoration-color: currentColor; }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 
-  /* Header */
-  header { display: grid; gap: 20px; }
-  h1 { margin: 0; font-size: clamp(2rem, 6vw, 2.75rem); line-height: 1.1; font-weight: 600; letter-spacing: -0.02em; text-wrap: balance; }
-  .lede { margin: 0; font-size: 1.125rem; color: var(--muted); max-width: 34em; text-wrap: pretty; }
+  /* Nav */
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+  .nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 86%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; }
+  .logo { font: 700 1.05rem/1 var(--display); text-decoration: none; letter-spacing: -0.01em; }
+  .nav ul { display: flex; gap: 22px; margin: 0; padding: 0; list-style: none; font-size: 0.92rem; color: var(--muted); }
+  .nav ul a { text-decoration: none; }
+  .nav ul a:hover { color: var(--fg); }
+
+  /* Hero */
+  .hero { display: grid; grid-template-columns: 1.45fr 1fr; gap: 56px; align-items: center; padding-block: 72px 40px; }
+  .hero-text { display: grid; gap: 22px; min-width: 0; }
+  .eyebrow { display: inline-flex; align-items: center; gap: 8px; font: 500 0.78rem/1 var(--mono); color: var(--muted); letter-spacing: 0.04em; }
+  .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #2f9e6a; box-shadow: 0 0 0 3px color-mix(in srgb, #2f9e6a 25%, transparent); }
+  h1 { margin: 0; font: var(--h1-weight) clamp(2.6rem, 6.2vw, 4.6rem)/1.02 var(--display); letter-spacing: -0.03em; text-wrap: balance; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lede { margin: 0; font-size: 1.15rem; color: var(--muted); max-width: 36em; text-wrap: pretty; }
   .lede strong { color: var(--fg); font-weight: 500; }
-  .links { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0; padding: 0; list-style: none; font-size: 0.95rem; }
-  .status { display: inline-flex; align-items: center; gap: 8px; font: 500 0.78rem/1 var(--mono); color: var(--muted); letter-spacing: 0.02em; }
-  .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #2f9e6a; box-shadow: 0 0 0 3px color-mix(in srgb, #2f9e6a 22%, transparent); }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 999px; font: 500 0.93rem/1 var(--body); text-decoration: none; border: 1px solid var(--line); background: var(--surface); transition: border-color .15s, transform .15s; }
+  .btn:hover { border-color: var(--fg); transform: translateY(-1px); }
+  .btn.primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .btn svg { width: 16px; height: 16px; fill: currentColor; }
+
+  .avatar { position: relative; aspect-ratio: 4 / 5; max-width: 100%; border-radius: var(--radius); overflow: hidden; background: var(--shot); display: grid; place-items: center; }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .avatar .initials { font: 600 clamp(4rem, 10vw, 7rem)/1 var(--display); color: var(--shot-2); letter-spacing: -0.04em; }
+  .avatar .hint { position: absolute; left: 12px; bottom: 12px; font: 400 0.72rem/1.3 var(--mono); color: var(--muted); }
+
+  .facts { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); margin-top: 8px; }
+  .fact { padding: 22px 20px 4px 0; display: grid; gap: 4px; }
+  .fact b { font: 600 1.7rem/1.1 var(--display); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .fact span { font-size: 0.88rem; color: var(--muted); }
+  .spectrum { display: none; }
 
   /* Sections */
-  section { display: grid; gap: 22px; }
-  h2 { margin: 0; font: 500 0.75rem/1 var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); padding-bottom: 12px; border-bottom: 1px solid var(--line); }
-  .list { display: grid; gap: 30px; margin: 0; padding: 0; list-style: none; }
-  .item { display: grid; grid-template-columns: 8.5rem 1fr; gap: 4px 24px; }
-  .when { font: 400 0.8rem/1.9 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
-  .body { min-width: 0; display: grid; gap: 6px; }
-  h3 { margin: 0; font-size: 1.02rem; font-weight: 600; line-height: 1.4; }
-  .where { color: var(--muted); font-size: 0.93rem; }
-  .body p { margin: 0; color: var(--fg); max-width: 60ch; text-wrap: pretty; }
-  .body ul { margin: 2px 0 0; padding-left: 1.1em; display: grid; gap: 4px; max-width: 60ch; }
-  .body li::marker { color: var(--muted); }
+  .section { padding-block: 64px; display: grid; gap: 32px; }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  h2 { margin: 0; font: 700 clamp(1.8rem, 3.6vw, 2.4rem)/1.1 var(--display); letter-spacing: -0.02em; }
+  .sec-head p { margin: 0; color: var(--muted); font-size: 0.95rem; }
 
-  .metrics { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 0; padding: 0; list-style: none; }
-  .metrics li { font: 400 0.76rem/1 var(--mono); padding: 6px 8px; background: var(--chip); border-radius: 4px; color: var(--fg); font-variant-numeric: tabular-nums; }
+  /* Projects */
+  .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 28px; }
+  .project { display: grid; gap: 16px; align-content: start; min-width: 0; }
+  .shot { aspect-ratio: 16 / 10; max-width: 100%; border-radius: var(--radius); overflow: hidden; background: var(--shot); position: relative; }
+  .shot img, .shot svg { width: 100%; height: 100%; display: block; object-fit: cover; }
+  .shot .hint { position: absolute; left: 10px; bottom: 10px; font: 400 0.7rem/1 var(--mono); color: var(--muted); background: var(--surface); padding: 5px 7px; border-radius: 4px; opacity: .85; }
+  .p-body { display: grid; gap: 10px; min-width: 0; }
+  .p-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  h3 { margin: 0; font: 600 1.3rem/1.25 var(--display); letter-spacing: -0.01em; }
+  .year { font: 400 0.8rem/1 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+  .p-body p { margin: 0; color: var(--muted); max-width: 60ch; text-wrap: pretty; }
+  .metrics { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+  .metrics li { font: 400 0.78rem/1 var(--mono); padding: 7px 9px; border-radius: 6px; background: var(--shot); font-variant-numeric: tabular-nums; }
   .metrics b { font-weight: 500; color: var(--accent); }
-  .stack { font: 400 0.8rem/1.6 var(--mono); color: var(--muted); }
-  .repo { font-size: 0.9rem; }
+  .tags { font: 400 0.8rem/1.6 var(--mono); color: var(--muted); }
+  .p-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
+  .p-links a { display: inline-flex; align-items: center; gap: 6px; font: 500 0.85rem/1 var(--body); padding: 8px 12px; border: 1px solid var(--line); border-radius: 999px; text-decoration: none; }
+  .p-links a:hover { border-color: var(--accent); color: var(--accent); }
+  .p-links svg { width: 14px; height: 14px; fill: currentColor; }
+  .p-links .todo { font: 400 0.78rem/1 var(--mono); padding: 8px 12px; border: 1px dashed var(--line); border-radius: 999px; color: var(--muted); }
 
-  .skills { display: grid; gap: 14px; margin: 0; }
-  .skills div { display: grid; grid-template-columns: 8.5rem 1fr; gap: 4px 24px; }
-  .skills dt { font: 400 0.8rem/1.9 var(--mono); color: var(--muted); }
-  .skills dd { margin: 0; min-width: 0; }
+  .more { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+  .more a { display: grid; gap: 4px; padding: 16px; border: 1px solid var(--line); border-radius: calc(var(--radius) - 4px); text-decoration: none; height: 100%; background: var(--surface); }
+  .more a:hover { border-color: var(--accent); }
+  .more b { font-weight: 600; font-size: 0.95rem; }
+  .more span { font: 400 0.76rem/1.4 var(--mono); color: var(--muted); }
 
-  .contact { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
-  .email { font: 500 1.05rem/1 var(--mono); user-select: all; }
-  .copy { font: 500 0.78rem/1 var(--mono); padding: 8px 12px; border: 1px solid var(--line); border-radius: 4px; background: transparent; color: var(--fg); cursor: pointer; }
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
+  .group { display: grid; gap: 14px; align-content: start; }
+  .group h3 { font-size: 1rem; font-family: var(--body); font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+  .chips li { font-size: 0.86rem; padding: 6px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+
+  /* Experience */
+  .timeline { margin: 0; padding: 0; list-style: none; display: grid; }
+  .job { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 6px 32px; padding-block: 26px; border-top: 1px solid var(--line); }
+  .job:last-child { border-bottom: 1px solid var(--line); }
+  .when { font: 400 0.84rem/1.8 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+  .job h3 { font-size: 1.12rem; }
+  .job .where { color: var(--muted); font-size: 0.94rem; }
+  .job p { margin: 8px 0 0; max-width: 66ch; text-wrap: pretty; }
+
+  /* Contact */
+  .contact { padding-block: 72px 56px; display: grid; gap: 22px; }
+  .contact h2 { font-size: clamp(2.2rem, 6vw, 3.8rem); max-width: 14ch; text-wrap: balance; }
+  .mail { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; }
+  .email { font: 500 clamp(1.05rem, 2.4vw, 1.35rem)/1.2 var(--mono); user-select: all; overflow-wrap: anywhere; }
+  .copy { font: 500 0.8rem/1 var(--mono); padding: 9px 13px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--fg); cursor: pointer; }
   .copy:hover { border-color: var(--accent); color: var(--accent); }
+  footer { padding-block: 24px 96px; border-top: 1px solid var(--line); font: 400 0.8rem/1.6 var(--mono); color: var(--muted); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 
-  footer { font: 400 0.78rem/1.6 var(--mono); color: var(--muted); }
+  /* ---------- Lab template ---------- */
+  .t-lab h2 { font: 500 0.82rem/1 var(--mono); text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); }
+  .t-lab h2::before { content: "// "; color: var(--accent); }
+  .t-lab h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); letter-spacing: -0.04em; line-height: 1.08; }
+  .t-lab h3 { font-family: var(--body); }
+  .t-lab .contact h2 { font: 500 clamp(2rem, 5vw, 3.2rem)/1.1 var(--display); text-transform: none; letter-spacing: -0.04em; color: var(--fg); }
+  .t-lab .contact h2::before { content: none; }
+  .t-lab .hero { grid-template-columns: minmax(0, 1fr) 240px; }
+  .t-lab .avatar { aspect-ratio: 1; }
+  .t-lab .spectrum { display: block; grid-column: 1 / -1; height: 3px; border-radius: 3px; background: linear-gradient(90deg, #6b4dff 0%, #2f8cff 18%, #22c7a9 36%, #d9d23a 52%, #ff8a3d 68%, #c2203a 84%, #5a1020 100%); }
+  .t-lab .facts { border-top: 0; margin-top: 0; }
+  .t-lab .fact b { font-family: var(--mono); font-weight: 500; font-size: 1.4rem; }
+  .t-lab .btn { border-radius: var(--radius); }
+  .t-lab .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .t-lab .projects { grid-template-columns: 1fr; gap: 0; }
+  .t-lab .project { grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 32px; padding-block: 28px; border-top: 1px solid var(--line); }
+  .t-lab .p-links a, .t-lab .chips li, .t-lab .p-links .todo, .t-lab .copy { border-radius: var(--radius); }
+  .t-lab .metrics li { border: 1px solid var(--line); background: transparent; }
+  .t-lab .chips li { font-family: var(--mono); font-size: 0.8rem; background: transparent; }
 
-  @media (max-width: 560px) {
-    .wrap { padding-block: 48px 40px; gap: 52px; }
-    .item, .skills div { grid-template-columns: 1fr; }
-    .when, .skills dt { line-height: 1.5; }
+  /* ---------- Bento template ---------- */
+  .t-bento .hero { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; align-items: stretch; padding-block: 32px 8px; }
+  .t-bento .hero-text { grid-column: span 3; background: var(--surface); border-radius: var(--radius); padding: clamp(24px, 4vw, 44px); align-content: center; }
+  .t-bento .avatar { aspect-ratio: auto; min-height: 100%; }
+  .t-bento .facts { display: contents; }
+  .t-bento .fact { background: var(--surface); border-radius: var(--radius); padding: 22px; }
+  .t-bento .fact:first-child { background: var(--accent); color: var(--accent-ink); }
+  .t-bento .fact:first-child span { color: inherit; opacity: .8; }
+  .t-bento .fact b { font-size: 2.2rem; font-weight: 400; }
+  .t-bento h1 { letter-spacing: -0.01em; font-size: clamp(2.8rem, 6.6vw, 5rem); }
+  .t-bento h1 em { font-style: italic; }
+  .t-bento h2 { font-weight: 400; font-size: clamp(2.2rem, 4.4vw, 3rem); letter-spacing: -0.01em; }
+  .t-bento h3 { font-family: var(--body); font-weight: 600; }
+  .t-bento .section { padding-block: 40px; }
+  .t-bento .project { background: var(--surface); border-radius: var(--radius); padding: 12px 12px 22px; gap: 18px; }
+  .t-bento .project .p-body { padding-inline: 10px; }
+  .t-bento .shot { border-radius: calc(var(--radius) - 8px); }
+  .t-bento .projects { gap: 14px; }
+  .t-bento .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .t-bento .group { background: var(--surface); border-radius: var(--radius); padding: 24px; }
+  .t-bento .chips li { background: var(--shot); border-color: transparent; }
+  .t-bento .timeline { background: var(--surface); border-radius: var(--radius); padding-inline: 28px; }
+  .t-bento .job:first-child { border-top: 0; }
+  .t-bento .job:last-child { border-bottom: 0; }
+  .t-bento .contact { background: var(--fg); color: var(--bg); border-radius: var(--radius); padding: clamp(28px, 5vw, 56px); margin-block: 40px 24px; }
+  .t-bento .contact .copy { background: transparent; color: inherit; border-color: color-mix(in srgb, var(--bg) 30%, transparent); }
+  .t-bento .contact .btn { background: transparent; color: inherit; border-color: color-mix(in srgb, var(--bg) 30%, transparent); }
+  .t-bento .more a { border-color: transparent; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .skills, .more { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .t-lab .project { grid-template-columns: 1fr; gap: 18px; }
+  }
+  @media (max-width: 720px) {
+    .nav ul { display: none; }
+    .hero, .t-lab .hero { grid-template-columns: 1fr; gap: 32px; padding-block: 44px 24px; }
+    .avatar { max-width: 280px; }
+    .t-lab .avatar { max-width: 180px; }
+    .facts { grid-template-columns: repeat(2, 1fr); }
+    .projects { grid-template-columns: 1fr; }
+    .job { grid-template-columns: 1fr; }
+    .section { padding-block: 44px; }
+    .t-bento .hero { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .t-bento .hero-text { grid-column: 1 / -1; }
+    .t-bento .avatar { grid-column: 1 / -1; max-width: none; aspect-ratio: 4 / 3; }
+    .t-bento .skills { grid-template-columns: 1fr; }
+    .t-bento .timeline { padding-inline: 20px; }
+  }
+  @media (max-width: 440px) {
+    .skills, .more { grid-template-columns: 1fr; }
+    .switcher span { display: none; }
   }
 </style>
 </head>
 <body>
 
-<main class="wrap">
-  <header>
-    <span class="status">Open to ML and computer vision roles</span>
-    <h1>Pranay Lachuluri</h1>
-    <p class="lede">Machine learning engineer focused on <strong>computer vision</strong>. MS in Computer Science (AI/ML) at the <strong>University at Buffalo</strong>, where I work on optical sensing for autonomous plastic sorting.</p>
-    <ul class="links">
-      <li><a href="https://github.com/pranaylachuluri" target="_blank" rel="noopener">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/pranay-lachuluri-768991258" target="_blank" rel="noopener">LinkedIn</a></li>
-      <li><a href="#contact">Email</a></li>
-      <li>Buffalo, NY</li>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-gh" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></symbol>
+  <symbol id="i-in" viewBox="0 0 16 16"><path d="M0 1.15C0 .52.52 0 1.18 0h13.64C15.48 0 16 .52 16 1.15v13.7c0 .63-.52 1.15-1.18 1.15H1.18C.52 16 0 15.48 0 14.85V1.15zm4.94 12.24V6.17H2.54v7.22h2.4zM3.74 5.18c.84 0 1.36-.55 1.36-1.25-.02-.71-.52-1.25-1.34-1.25-.82 0-1.36.54-1.36 1.25 0 .7.52 1.25 1.33 1.25h.01zm4.91 8.21V9.36c0-.22.02-.43.08-.59.17-.43.57-.88 1.23-.88.87 0 1.21.66 1.21 1.63v3.87h2.4V9.25c0-2.22-1.18-3.25-2.77-3.25-1.28 0-1.84.7-2.16 1.2v.03h-.02l.02-.03V6.17h-2.4c.03.68 0 7.22 0 7.22h2.4z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 16 16"><path d="M4.5 3h8.5v8.5h-1.6V5.7l-7.3 7.3-1.1-1.1 7.3-7.3H4.5z"/></symbol>
+</svg>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="#top">Pranay Lachuluri</a>
+    <ul>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-  </header>
+  </div>
+</nav>
 
-  <section aria-labelledby="h-work">
-    <h2 id="h-work">Experience</h2>
-    <ol class="list">
-      <li class="item">
-        <span class="when">2025 – now</span>
-        <div class="body">
-          <h3>Graduate Research Assistant</h3>
-          <span class="where">University at Buffalo · ASAP (Affordable Scalable Autonomous Plastic-Sort)</span>
-          <p>Building the data foundation for a low-cost plastic-sensing system. I collect and validate visible and infrared optical measurements from cameras, photodetectors, filters and illumination rigs, which feed spectral analysis, sensor calibration and future ML-based plastic classification.</p>
-        </div>
-      </li>
-      <li class="item">
-        <span class="when">03/25 – 08/25</span>
-        <div class="body">
-          <h3>Apprentice, Google/YouTube Client Operations</h3>
-          <span class="where">Genpact</span>
-          <p>Data validation and quality-focused operations for a Google/YouTube client process, with training in generative AI, agentic AI and AI-assisted workflows.</p>
-        </div>
-      </li>
-      <li class="item">
-        <span class="when">04/23 – 07/23</span>
-        <div class="body">
-          <h3>Data Science Intern</h3>
-          <span class="where">YHills · Remote</span>
-          <p>Built and compared Decision Tree, Random Forest, Bagging, SVM and regression models for taxi fare, vaccination and fraud prediction.</p>
-          <ul class="metrics" aria-label="Results">
-            <li>fraud <b>99%</b> acc</li>
-            <li>taxi fare <b>97%</b></li>
-            <li>vaccination <b>85%</b></li>
-          </ul>
-        </div>
-      </li>
-    </ol>
+<main id="top" class="wrap">
+  <section class="hero" aria-label="Introduction">
+    <div class="hero-text">
+      <span class="eyebrow">Open to ML and computer vision roles</span>
+      <h1>I build models that <em>see</em> the world.</h1>
+      <p class="lede">I'm Pranay, a machine learning engineer focused on <strong>computer vision</strong>. I'm doing my MS in Computer Science (AI/ML) at the <strong>University at Buffalo</strong>, where I research optical sensing for autonomous plastic sorting.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">View projects</a>
+        <a class="btn" href="https://github.com/pranaylachuluri" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/pranay-lachuluri-768991258" target="_blank" rel="noopener"><svg><use href="#i-in"/></svg>LinkedIn</a>
+      </div>
+    </div>
+    <figure class="avatar" style="margin:0">
+      <!-- Replace with: <img src="images/profile.jpg" alt="Pranay Lachuluri"> -->
+      <span class="initials" aria-hidden="true">PL</span>
+    </figure>
+    <div class="facts">
+      <div class="fact"><b>3.7</b><span>GPA, MS at UB</span></div>
+      <div class="fact"><b>30.19 dB</b><span>best PSNR, ShadowFix</span></div>
+      <div class="fact"><b>59</b><span>object classes detected</span></div>
+      <div class="fact"><b>4</b><span>ML projects shipped</span></div>
+    </div>
+    <div class="spectrum" aria-hidden="true"></div>
   </section>
 
-  <section aria-labelledby="h-proj">
-    <h2 id="h-proj">Selected projects</h2>
-    <ol class="list">
-      <li class="item">
-        <span class="when">2026</span>
-        <div class="body">
-          <h3>ShadowFix AI</h3>
-          <p>Shadow removal with a 7.76M-parameter U-Net. I compared RGB, residual and mask-guided variants on the ISTD dataset and shipped the best one behind a Gradio app with adjustable restoration strength.</p>
-          <ul class="metrics" aria-label="Results">
-            <li><b>30.19 dB</b> PSNR</li>
-            <li><b>0.951</b> SSIM</li>
-            <li><b>+9.63 dB</b> over input</li>
-          </ul>
-          <span class="stack">PyTorch · U-Net · AMP · OpenCV · Gradio</span>
+  <section id="projects" class="section" aria-labelledby="h-projects">
+    <div class="sec-head">
+      <h2 id="h-projects">Projects</h2>
+      <p>Computer vision and applied ML, from training to a working demo.</p>
+    </div>
+    <div class="projects">
+
+      <article class="project">
+        <div class="shot">
+          <!-- Replace with: <img src="images/shadowfix.png" alt="ShadowFix before and after"> -->
+          <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: shadowed image beside its restored version">
+            <rect width="400" height="250" style="fill:var(--shot)"/>
+            <rect x="0" y="170" width="400" height="80" style="fill:var(--shot-2)"/>
+            <polygon points="40,250 120,170 200,170 200,250" style="fill:var(--fg);opacity:.28"/>
+            <circle cx="95" cy="140" r="34" style="fill:var(--accent)"/>
+            <circle cx="295" cy="140" r="34" style="fill:var(--accent)"/>
+            <ellipse cx="300" cy="176" rx="34" ry="5" style="fill:var(--fg);opacity:.12"/>
+            <line x1="200" y1="0" x2="200" y2="250" style="stroke:var(--surface);stroke-width:3"/>
+            <circle cx="200" cy="125" r="13" style="fill:var(--surface)"/>
+            <path d="M195 120l-5 5 5 5M205 120l5 5-5 5" style="fill:none;stroke:var(--fg);stroke-width:2"/>
+            <text x="14" y="24" style="fill:var(--muted);font:12px var(--mono)">input</text>
+            <text x="386" y="24" text-anchor="end" style="fill:var(--muted);font:12px var(--mono)">restored</text>
+          </svg>
         </div>
-      </li>
-      <li class="item">
-        <span class="when">2026</span>
-        <div class="body">
-          <h3>Trash Detection with YOLOv8</h3>
-          <p>Fine-tuned YOLOv8m on a 59-class TACO-derived dataset of cluttered waste scenes, then built heatmaps, a cleanliness score and an interactive Gradio assistant on top of the detector.</p>
-          <ul class="metrics" aria-label="Results">
-            <li><b>59</b> classes</li>
-            <li><b>832 px</b> input</li>
-            <li><b>0.183</b> mAP@50</li>
-          </ul>
-          <span class="stack">YOLOv8 · AdamW · Mosaic/MixUp · OpenCV · Gradio</span>
+        <div class="p-body">
+          <div class="p-top"><h3>ShadowFix AI</h3><span class="year">2026</span></div>
+          <p>Removes shadows from photos with a 7.76M-parameter U-Net. I compared RGB, residual and mask-guided variants on ISTD and shipped the best one in a Gradio app with adjustable strength.</p>
+          <ul class="metrics"><li><b>30.19 dB</b> PSNR</li><li><b>0.951</b> SSIM</li><li><b>+9.63 dB</b> vs input</li></ul>
+          <div class="tags">PyTorch · U-Net · AMP · OpenCV · Gradio</div>
         </div>
-      </li>
-      <li class="item">
-        <span class="when">2024</span>
-        <div class="body">
-          <h3>Real-time Sign Language Detection</h3>
-          <p>Live gesture recognition from a webcam: MediaPipe hand landmarks feed a custom Keras classifier, with a data-collection workflow I built for new gestures.</p>
-          <span class="stack">TensorFlow/Keras · MediaPipe · OpenCV</span>
-          <a class="repo" href="https://github.com/pranaylachuluri/Sign-Language-detection" target="_blank" rel="noopener">Code ↗</a>
+      </article>
+
+      <article class="project">
+        <div class="shot">
+          <!-- Replace with: <img src="images/trash-detection.png" alt="YOLOv8 detecting trash"> -->
+          <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: detector drawing labelled boxes around litter">
+            <rect width="400" height="250" style="fill:var(--shot)"/>
+            <rect x="58" y="92" width="40" height="96" rx="8" transform="rotate(-18 78 140)" style="fill:var(--shot-2)"/>
+            <circle cx="232" cy="168" r="28" style="fill:var(--shot-2)"/>
+            <path d="M300 70l55 12-10 50-52-6z" style="fill:var(--shot-2)"/>
+            <rect x="38" y="70" width="90" height="136" style="fill:none;stroke:var(--accent);stroke-width:2.5"/>
+            <rect x="38" y="52" width="82" height="18" style="fill:var(--accent)"/>
+            <text x="44" y="65" style="fill:var(--accent-ink);font:11px var(--mono)">bottle .82</text>
+            <rect x="196" y="132" width="72" height="72" style="fill:none;stroke:var(--accent);stroke-width:2.5"/>
+            <rect x="196" y="114" width="58" height="18" style="fill:var(--accent)"/>
+            <text x="202" y="127" style="fill:var(--accent-ink);font:11px var(--mono)">can .71</text>
+            <rect x="286" y="60" width="80" height="80" style="fill:none;stroke:var(--fg);stroke-width:2;stroke-dasharray:5 4;opacity:.6"/>
+            <text x="290" y="156" style="fill:var(--muted);font:11px var(--mono)">wrapper .44</text>
+          </svg>
         </div>
-      </li>
-      <li class="item">
-        <span class="when">2023</span>
-        <div class="body">
-          <h3>Car Price Prediction App</h3>
-          <p>End-to-end regression pipeline that estimates used-car resale prices, served from Flask with a browser form for live predictions.</p>
-          <span class="stack">Scikit-learn · Pandas · Flask · JavaScript</span>
-          <a class="repo" href="https://github.com/pranaylachuluri/Car-prize-prediction" target="_blank" rel="noopener">Code ↗</a>
+        <div class="p-body">
+          <div class="p-top"><h3>Trash Detection with YOLOv8</h3><span class="year">2026</span></div>
+          <p>Fine-tuned YOLOv8m on a 59-class TACO-derived dataset of cluttered waste scenes, then added heatmaps, a cleanliness score and an interactive Gradio assistant.</p>
+          <ul class="metrics"><li><b>59</b> classes</li><li><b>832 px</b> input</li><li><b>0.183</b> mAP@50</li></ul>
+          <div class="tags">YOLOv8 · AdamW · Mosaic/MixUp · OpenCV · Gradio</div>
         </div>
-      </li>
-    </ol>
+      </article>
+
+      <article class="project">
+        <div class="shot">
+          <!-- Replace with: <img src="images/sign-language.png" alt="Sign language detection demo"> -->
+          <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: hand landmarks tracked by MediaPipe">
+            <rect width="400" height="250" style="fill:var(--shot)"/>
+            <g style="stroke:var(--accent);stroke-width:2.5;fill:none;stroke-linecap:round">
+              <polyline points="200,222 165,200 140,175 125,153 112,135"/>
+              <polyline points="200,222 175,145 168,110 164,87 161,67"/>
+              <polyline points="200,140 200,102 200,77 200,55"/>
+              <polyline points="224,145 230,110 233,88 236,69"/>
+              <polyline points="200,222 245,157 258,130 265,112 271,95"/>
+              <polyline points="175,145 200,140 224,145 245,157"/>
+            </g>
+            <g style="fill:var(--fg)">
+              <circle cx="200" cy="222" r="5"/><circle cx="165" cy="200" r="4"/><circle cx="140" cy="175" r="4"/><circle cx="125" cy="153" r="4"/><circle cx="112" cy="135" r="4"/>
+              <circle cx="175" cy="145" r="4"/><circle cx="168" cy="110" r="4"/><circle cx="164" cy="87" r="4"/><circle cx="161" cy="67" r="4"/>
+              <circle cx="200" cy="140" r="4"/><circle cx="200" cy="102" r="4"/><circle cx="200" cy="77" r="4"/><circle cx="200" cy="55" r="4"/>
+              <circle cx="224" cy="145" r="4"/><circle cx="230" cy="110" r="4"/><circle cx="233" cy="88" r="4"/><circle cx="236" cy="69" r="4"/>
+              <circle cx="245" cy="157" r="4"/><circle cx="258" cy="130" r="4"/><circle cx="265" cy="112" r="4"/><circle cx="271" cy="95" r="4"/>
+            </g>
+            <text x="14" y="24" style="fill:var(--muted);font:12px var(--mono)">21 landmarks</text>
+            <text x="386" y="236" text-anchor="end" style="fill:var(--muted);font:12px var(--mono)">live · webcam</text>
+          </svg>
+        </div>
+        <div class="p-body">
+          <div class="p-top"><h3>Real-time Sign Language Detection</h3><span class="year">2024</span></div>
+          <p>Recognises hand gestures live from a webcam. MediaPipe extracts hand landmarks, a custom Keras network classifies them, and OpenCV shows the prediction on the video feed.</p>
+          <div class="tags">TensorFlow/Keras · MediaPipe · OpenCV · NumPy</div>
+          <div class="p-links">
+            <a href="https://github.com/pranaylachuluri/Sign-Language-detection" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="shot">
+          <!-- Replace with: <img src="images/car-price.png" alt="Car price prediction app"> -->
+          <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: resale price falling with car age, with a fitted regression line">
+            <rect width="400" height="250" style="fill:var(--shot)"/>
+            <line x1="50" y1="210" x2="370" y2="210" style="stroke:var(--shot-2);stroke-width:2"/>
+            <line x1="50" y1="30" x2="50" y2="210" style="stroke:var(--shot-2);stroke-width:2"/>
+            <g style="fill:var(--fg);opacity:.55">
+              <circle cx="80" cy="62" r="4"/><circle cx="96" cy="80" r="4"/><circle cx="112" cy="70" r="4"/><circle cx="130" cy="96" r="4"/><circle cx="150" cy="88" r="4"/>
+              <circle cx="170" cy="112" r="4"/><circle cx="188" cy="104" r="4"/><circle cx="206" cy="130" r="4"/><circle cx="226" cy="124" r="4"/><circle cx="246" cy="146" r="4"/>
+              <circle cx="266" cy="140" r="4"/><circle cx="286" cy="164" r="4"/><circle cx="306" cy="158" r="4"/><circle cx="326" cy="180" r="4"/><circle cx="346" cy="174" r="4"/>
+            </g>
+            <line x1="70" y1="62" x2="356" y2="186" style="stroke:var(--accent);stroke-width:3;stroke-linecap:round"/>
+            <text x="370" y="230" text-anchor="end" style="fill:var(--muted);font:12px var(--mono)">age (years)</text>
+            <text x="58" y="24" style="fill:var(--muted);font:12px var(--mono)">resale price</text>
+          </svg>
+        </div>
+        <div class="p-body">
+          <div class="p-top"><h3>Car Price Prediction App</h3><span class="year">2023</span></div>
+          <p>Estimates used-car resale prices from make, model, year, fuel type and mileage. A scikit-learn pipeline is served from Flask with a browser form for live predictions.</p>
+          <div class="tags">Scikit-learn · Pandas · Flask · JavaScript</div>
+          <div class="p-links">
+            <a href="https://github.com/pranaylachuluri/Car-prize-prediction" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="sec-head" style="margin-top:12px"><h3>More on GitHub</h3></div>
+    <ul class="more">
+      <li><a href="https://github.com/pranaylachuluri/JARVIS" target="_blank" rel="noopener"><b>JARVIS</b><span>Python</span></a></li>
+      <li><a href="https://github.com/pranaylachuluri/ID-Verification" target="_blank" rel="noopener"><b>ID Verification</b><span>Java</span></a></li>
+      <li><a href="https://github.com/pranaylachuluri/Airpods-website" target="_blank" rel="noopener"><b>AirPods Website</b><span>HTML · CSS</span></a></li>
+      <li><a href="https://github.com/pranaylachuluri/starwars-planets" target="_blank" rel="noopener"><b>Star Wars Planets</b><span>JavaScript</span></a></li>
+    </ul>
   </section>
 
-  <section aria-labelledby="h-skills">
-    <h2 id="h-skills">Skills</h2>
-    <dl class="skills">
-      <div><dt>Languages</dt><dd>Python, Java, JavaScript, SQL</dd></div>
-      <div><dt>ML / DL</dt><dd>PyTorch, TensorFlow, Keras, Scikit-learn, CNNs, U-Net, YOLO, transfer learning</dd></div>
-      <div><dt>Vision &amp; data</dt><dd>OpenCV, MediaPipe, NumPy, Pandas, Matplotlib, signal processing</dd></div>
-      <div><dt>Tools</dt><dd>Flask, React, Git, Linux, Jupyter, Colab, MySQL</dd></div>
-    </dl>
-  </section>
-
-  <section aria-labelledby="h-edu">
-    <h2 id="h-edu">Education</h2>
-    <ol class="list">
-      <li class="item">
-        <span class="when">2025 – now</span>
-        <div class="body">
-          <h3>MS, Computer Science (AI/ML)</h3>
-          <span class="where">University at Buffalo, SUNY · GPA 3.7</span>
-          <p>Deep Learning, Computer Vision &amp; Image Processing, Statistical Data Mining, Data-Intensive Computing, Computer Security.</p>
-        </div>
-      </li>
-      <li class="item">
-        <span class="when">2020 – 2024</span>
-        <div class="body">
-          <h3>BE, Computer Science (AI/ML)</h3>
-          <span class="where">Neil Gogte Institute of Technology, Hyderabad</span>
-        </div>
-      </li>
-    </ol>
-  </section>
-
-  <section id="contact" aria-labelledby="h-contact">
-    <h2 id="h-contact">Contact</h2>
-    <div class="contact">
-      <span class="email" id="email">pranayla@buffalo.edu</span>
-      <button class="copy" id="copy-email" type="button">Copy</button>
+  <section id="skills" class="section" aria-labelledby="h-skills">
+    <div class="sec-head"><h2 id="h-skills">Skills</h2></div>
+    <div class="skills">
+      <div class="group"><h3>Machine learning</h3><ul class="chips"><li>PyTorch</li><li>TensorFlow</li><li>Keras</li><li>Scikit-learn</li><li>CNNs</li><li>U-Net</li><li>Transfer learning</li></ul></div>
+      <div class="group"><h3>Computer vision</h3><ul class="chips"><li>OpenCV</li><li>YOLO</li><li>MediaPipe</li><li>Object detection</li><li>Image restoration</li><li>Signal processing</li></ul></div>
+      <div class="group"><h3>Languages &amp; data</h3><ul class="chips"><li>Python</li><li>Java</li><li>JavaScript</li><li>SQL</li><li>NumPy</li><li>Pandas</li><li>Matplotlib</li></ul></div>
+      <div class="group"><h3>Tools &amp; web</h3><ul class="chips"><li>Git</li><li>Linux</li><li>Jupyter</li><li>Colab</li><li>Gradio</li><li>Flask</li><li>React</li><li>MySQL</li></ul></div>
     </div>
   </section>
 
-  <footer>© 2026 Pranay Lachuluri</footer>
+  <section id="experience" class="section" aria-labelledby="h-exp">
+    <div class="sec-head"><h2 id="h-exp">Experience &amp; education</h2></div>
+    <ol class="timeline">
+      <li class="job">
+        <span class="when">2025 – now</span>
+        <div>
+          <h3>Graduate Research Assistant</h3>
+          <div class="where">University at Buffalo · ASAP plastic-sort project</div>
+          <p>Collecting and validating visible and infrared optical measurements from cameras, photodetectors, filters and illumination rigs. This data feeds spectral analysis, sensor calibration and future ML-based plastic classification.</p>
+        </div>
+      </li>
+      <li class="job">
+        <span class="when">2025 – now</span>
+        <div>
+          <h3>MS, Computer Science (AI/ML)</h3>
+          <div class="where">University at Buffalo, SUNY · GPA 3.7</div>
+          <p>Deep Learning, Computer Vision &amp; Image Processing, Statistical Data Mining, Data-Intensive Computing, Computer Security.</p>
+        </div>
+      </li>
+      <li class="job">
+        <span class="when">Mar – Aug 2025</span>
+        <div>
+          <h3>Apprentice, Google/YouTube Client Operations</h3>
+          <div class="where">Genpact · India</div>
+          <p>Data validation and quality-focused operations for a Google/YouTube client, with training in generative AI, agentic AI and AI-assisted workflows.</p>
+        </div>
+      </li>
+      <li class="job">
+        <span class="when">Apr – Jul 2023</span>
+        <div>
+          <h3>Data Science Intern</h3>
+          <div class="where">YHills · Remote</div>
+          <p>Built fraud, taxi fare and vaccination prediction models with 99%, 97% and 85% accuracy, comparing tree ensembles, SVMs and regression.</p>
+        </div>
+      </li>
+      <li class="job">
+        <span class="when">2020 – 2024</span>
+        <div>
+          <h3>BE, Computer Science (AI/ML)</h3>
+          <div class="where">Neil Gogte Institute of Technology · Hyderabad</div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="contact" class="contact" aria-labelledby="h-contact">
+    <h2 id="h-contact">Let's build something that sees.</h2>
+    <div class="mail">
+      <span class="email" id="email">pranayla@buffalo.edu</span>
+      <button class="copy" id="copy-email" type="button">Copy email</button>
+    </div>
+    <div class="cta">
+      <a class="btn" href="https://www.linkedin.com/in/pranay-lachuluri-768991258" target="_blank" rel="noopener"><svg><use href="#i-in"/></svg>LinkedIn</a>
+      <a class="btn" href="https://github.com/pranaylachuluri" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>GitHub</a>
+    </div>
+  </section>
+
+  <footer><span>© 2026 Pranay Lachuluri</span><span>Buffalo, NY</span></footer>
 </main>
+
 
 <script>
   (function () {
-    var btn = document.getElementById('copy-email');
-    var el = document.getElementById('email');
+    var btn = document.getElementById('copy-email'), el = document.getElementById('email');
     btn.addEventListener('click', function () {
-      var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1600); };
-      var fallback = function () {
-        var r = document.createRange(); r.selectNodeContents(el);
-        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-        btn.textContent = 'Selected';
-      };
+      var label = btn.textContent;
+      var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = label; }, 1600); };
+      var fallback = function () { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected'; };
       try { navigator.clipboard.writeText(el.textContent).then(done, fallback); } catch (e) { fallback(); }
     });
   })();
