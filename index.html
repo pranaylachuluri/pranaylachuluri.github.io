@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="t-lab">
+<html lang="en" class="t-studio">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -7,7 +7,7 @@
 <meta name="description" content="Pranay Lachuluri, ML engineer focused on computer vision. MS Computer Science (AI/ML) at the University at Buffalo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Archivo:wght@500;700;900&family=Manrope:wght@500;700;800&family=Unbounded:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&display=swap">
 <style>
   /* Layout: wide 1120px canvas. Studio = split hero + 2-up image grid. Lab = dark, mono, project rows with a visible-to-IR spectrum rule. Bento = everything in tiles. */
   :root {
@@ -210,6 +210,132 @@
   .t-bento .contact .btn { background: transparent; color: inherit; border-color: color-mix(in srgb, var(--bg) 30%, transparent); }
   .t-bento .more .card { border-color: transparent; }
 
+  /* ---------- Swiss template: white, black, red, hard edges ---------- */
+  html:root.t-swiss {
+    --bg: #ffffff; --surface: #ffffff; --fg: #0a0a0a; --muted: #666666; --line: #0a0a0a;
+    --accent: #e10600; --accent-ink: #ffffff; --shot: #f0f0f0; --shot-2: #c9c9c9;
+    --display: "Archivo", "Helvetica Neue", Arial, sans-serif; --radius: 0px; --h1-weight: 900; color-scheme: light;
+  }
+  .t-swiss h1 { text-transform: uppercase; font-size: clamp(2.8rem, 8vw, 6.4rem); letter-spacing: -0.045em; line-height: .92; }
+  .t-swiss h1 em { color: var(--accent); }
+  .t-swiss h2 { text-transform: uppercase; font-weight: 900; letter-spacing: -0.03em; font-size: clamp(2rem, 5vw, 3.4rem); }
+  .t-swiss .nav { border-bottom-width: 2px; }
+  .t-swiss .btn, .t-swiss .p-links a, .t-swiss .chips li, .t-swiss .copy, .t-swiss .metrics li { border-radius: 0; border-color: var(--fg); }
+  .t-swiss .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .t-swiss .shot, .t-swiss .avatar { filter: grayscale(1); }
+  .t-swiss .project:hover .shot { filter: none; }
+  .t-swiss .facts { border-top-width: 2px; }
+  .t-swiss .fact b { font-size: 2.6rem; font-weight: 900; }
+  .t-swiss .sec-head { border-bottom: 2px solid var(--fg); padding-bottom: 14px; }
+  .t-swiss .job, .t-swiss .job:last-child { border-color: var(--fg); }
+  .t-swiss .more .card { border-color: var(--fg); }
+
+  /* ---------- Sidebar template: fixed left column, deep teal + amber ---------- */
+  html:root.t-side {
+    --bg: #0d1b1e; --surface: #12262a; --fg: #d8e6e3; --muted: #86a29e; --line: #20393e;
+    --accent: #f2b84b; --accent-ink: #0d1b1e; --shot: #11242a; --shot-2: #24434a;
+    --display: "Manrope", ui-sans-serif, system-ui, sans-serif; --radius: 10px; --h1-weight: 800; color-scheme: dark;
+  }
+  .t-side h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); }
+  .t-side h2 { font-size: 1.05rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); }
+  .t-side .hero { grid-template-columns: 1fr; gap: 28px; }
+  .t-side .avatar { order: -1; width: 120px; aspect-ratio: 1; border-radius: 50%; }
+  .t-side .avatar .initials { font-size: 2.6rem; }
+  .t-side .avatar .hint { display: none; }
+  .t-side .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .t-side .projects { grid-template-columns: 1fr; gap: 14px; }
+  .t-side .project { grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 24px; padding: 16px; border-radius: var(--radius); transition: background .15s; }
+  .t-side .project:hover { background: var(--surface); }
+  .t-side .more { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .t-side .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .t-side .chips li { background: color-mix(in srgb, var(--accent) 12%, transparent); border-color: transparent; color: var(--accent); }
+  @media (min-width: 1000px) {
+    .t-side .nav { position: fixed; top: 0; bottom: 0; left: 0; width: 300px; border-bottom: 0; border-right: 1px solid var(--line); background: var(--bg); }
+    .t-side .nav .wrap { flex-direction: column; align-items: flex-start; justify-content: flex-start; height: 100%; padding: 64px 40px; gap: 40px; }
+    .t-side .logo { font-size: 1.6rem; line-height: 1.15; max-width: 8ch; }
+    .t-side .nav ul { flex-direction: column; gap: 14px; font-size: 0.95rem; }
+    .t-side .nav ul a::before { content: ""; display: inline-block; width: 24px; height: 1px; background: currentColor; vertical-align: middle; margin-right: 12px; transition: width .2s; }
+    .t-side .nav ul a:hover::before { width: 48px; }
+    .t-side main.wrap { margin-left: 300px; max-width: 860px; padding-left: 64px; }
+  }
+
+  /* ---------- Aurora template: glass cards over a soft colour field ---------- */
+  html:root.t-aurora {
+    --bg: #0b0b18; --surface: rgba(255, 255, 255, 0.06); --fg: #f3f3fb; --muted: #a8a8c4; --line: rgba(255, 255, 255, 0.12);
+    --accent: #7ef0d2; --accent-ink: #0b0b18; --shot: rgba(255, 255, 255, 0.05); --shot-2: rgba(255, 255, 255, 0.16);
+    --display: "Unbounded", ui-sans-serif, system-ui, sans-serif; --radius: 20px; --h1-weight: 600; color-scheme: dark;
+  }
+  .t-aurora body { background: radial-gradient(55% 45% at 10% 0%, rgba(25, 140, 130, 0.45), transparent 70%), radial-gradient(45% 40% at 95% 15%, rgba(214, 92, 140, 0.35), transparent 70%), radial-gradient(50% 40% at 50% 100%, rgba(240, 150, 60, 0.22), transparent 70%), var(--bg); background-attachment: fixed; }
+  .t-aurora h1 { font-size: clamp(2.2rem, 5.4vw, 4rem); letter-spacing: -0.04em; line-height: 1.08; }
+  .t-aurora h1 em { background: linear-gradient(90deg, #7ef0d2, #f59ac2, #f5b562); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .t-aurora h2 { font-weight: 600; letter-spacing: -0.03em; }
+  .t-aurora h3 { font-family: var(--body); font-weight: 600; }
+  .t-aurora .nav { background: rgba(11, 11, 24, 0.6); }
+  .t-aurora .project, .t-aurora .group, .t-aurora .more .card, .t-aurora .timeline { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+  .t-aurora .project { padding: 12px 12px 22px; }
+  .t-aurora .project .p-body { padding-inline: 10px; }
+  .t-aurora .shot { border-radius: calc(var(--radius) - 8px); }
+  .t-aurora .group { padding: 22px; }
+  .t-aurora .timeline { padding-inline: 28px; }
+  .t-aurora .job:first-child { border-top: 0; }
+  .t-aurora .job:last-child { border-bottom: 0; }
+  .t-aurora .btn { background: var(--surface); }
+  .t-aurora .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .t-aurora .chips li { background: transparent; }
+
+  /* ---------- Brutal template: thick borders, offset shadows, yellow ---------- */
+  html:root.t-brutal {
+    --bg: #ffffff; --surface: #ffffff; --fg: #000000; --muted: #3d3d3d; --line: #000000;
+    --accent: #ffd400; --accent-ink: #000000; --shot: #ffd400; --shot-2: #000000;
+    --display: "Archivo", "Arial Black", sans-serif; --body: "Geist Mono", ui-monospace, Menlo, monospace; --radius: 0px; --h1-weight: 900; color-scheme: light;
+  }
+  .t-brutal body { font-size: 15px; }
+  .t-brutal h1 { font-size: clamp(2.6rem, 7vw, 5.4rem); letter-spacing: -0.04em; }
+  .t-brutal h1 em { color: var(--fg); background: var(--accent); padding: 0 .12em; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+  .t-brutal h2 { display: inline-block; background: var(--fg); color: var(--bg); padding: 6px 14px; font-weight: 900; text-transform: uppercase; }
+  .t-brutal .nav { border-bottom: 3px solid #000; background: var(--bg); }
+  .t-brutal .avatar, .t-brutal .shot, .t-brutal .project, .t-brutal .group, .t-brutal .more .card, .t-brutal .timeline { border: 3px solid #000; box-shadow: 6px 6px 0 #000; }
+  .t-brutal .project { padding: 14px 14px 20px; }
+  .t-brutal .shot { box-shadow: none; }
+  .t-brutal .group { padding: 20px; }
+  .t-brutal .timeline { padding-inline: 24px; }
+  .t-brutal .job { border-color: #000; }
+  .t-brutal .job:first-child { border-top: 0; }
+  .t-brutal .job:last-child { border-bottom: 0; }
+  .t-brutal .btn, .t-brutal .p-links a, .t-brutal .copy { border: 2px solid #000; border-radius: 0; box-shadow: 3px 3px 0 #000; }
+  .t-brutal .btn:hover, .t-brutal .p-links a:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 #000; color: #000; border-color: #000; }
+  .t-brutal .btn.primary { background: var(--accent); color: #000; border-color: #000; }
+  .t-brutal .chips li, .t-brutal .metrics li { border: 2px solid #000; border-radius: 0; background: #fff; }
+  .t-brutal .metrics b { color: #000; background: var(--accent); padding: 0 3px; }
+  .t-brutal .facts { border-top: 3px solid #000; }
+  .t-brutal .fact b { font-size: 2.4rem; font-weight: 900; }
+
+  /* ---------- Editorial template: magazine serif, alternating spreads ---------- */
+  html:root.t-edit {
+    --bg: #fcfcfd; --surface: #ffffff; --fg: #15171e; --muted: #5d606b; --line: #e3e4ea;
+    --accent: #1d3fa8; --accent-ink: #ffffff; --shot: #eceef4; --shot-2: #c8cddb;
+    --display: "Fraunces", Georgia, "Times New Roman", serif; --radius: 2px; --h1-weight: 400; color-scheme: light;
+  }
+  .t-edit h1 { font-size: clamp(3rem, 8vw, 6.2rem); letter-spacing: -0.035em; line-height: .98; font-variation-settings: "opsz" 144; }
+  .t-edit h1 em { font-style: italic; color: var(--accent); }
+  .t-edit h2 { font-weight: 400; font-style: italic; font-size: clamp(2.2rem, 5vw, 3.6rem); }
+  .t-edit h3 { font-weight: 500; font-size: 1.6rem; }
+  .t-edit .lede { font-family: var(--display); font-size: 1.35rem; line-height: 1.5; color: var(--fg); }
+  .t-edit .lede strong { font-weight: 600; }
+  .t-edit .avatar { aspect-ratio: 3 / 4; filter: grayscale(.6); }
+  .t-edit .btn { border-radius: 2px; }
+  .t-edit .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .t-edit .fact b { font-weight: 400; font-size: 2.6rem; font-style: italic; }
+  .t-edit .projects { grid-template-columns: 1fr; gap: 64px; counter-reset: proj; }
+  .t-edit .project { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 48px; align-items: center; counter-increment: proj; }
+  .t-edit .project:nth-child(even) .shot { order: 2; }
+  .t-edit .p-top::before { content: counter(proj, decimal-leading-zero); font: italic 400 1rem/1 var(--display); color: var(--accent); margin-right: 12px; }
+  .t-edit .p-top { justify-content: flex-start; }
+  .t-edit .p-top .year { margin-left: auto; }
+  .t-edit .chips li { border-radius: 2px; }
+  .t-edit .p-links a { border-radius: 2px; }
+  .t-edit .contact h2 { font-size: clamp(2.6rem, 7vw, 5rem); }
+
   /* Responsive */
   @media (max-width: 900px) {
     .skills, .more { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -229,6 +355,10 @@
     .t-bento .avatar { grid-column: 1 / -1; max-width: none; aspect-ratio: 4 / 3; }
     .t-bento .skills { grid-template-columns: 1fr; }
     .t-bento .timeline { padding-inline: 20px; }
+    .t-side .project, .t-edit .project { grid-template-columns: 1fr; gap: 18px; }
+    .t-edit .project:nth-child(even) .shot { order: 0; }
+    .t-side .skills, .t-side .more { grid-template-columns: 1fr; }
+    .t-aurora .timeline, .t-brutal .timeline { padding-inline: 18px; }
   }
   @media (max-width: 440px) {
     .skills, .more { grid-template-columns: 1fr; }
@@ -251,6 +381,7 @@
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -269,8 +400,7 @@
       </div>
     </div>
     <figure class="avatar" style="margin:0">
-      <!-- Replace with: <img src="images/profile.jpg" alt="Pranay Lachuluri"> -->
-      <span class="initials" aria-hidden="true">PL</span>
+      <img src="images/profile.jpg" alt="Pranay Lachuluri" width="640" height="800">
     </figure>
     <div class="facts">
       <div class="fact"><b>3.7</b><span>GPA, MS at UB</span></div>
@@ -472,7 +602,7 @@
   </section>
 
   <section id="experience" class="section" aria-labelledby="h-exp">
-    <div class="sec-head"><h2 id="h-exp">Experience &amp; education</h2></div>
+    <div class="sec-head"><h2 id="h-exp">Experience</h2></div>
     <ol class="timeline">
       <li class="job">
         <span class="when">2025 – now</span>
@@ -480,14 +610,6 @@
           <h3>Graduate Research Assistant</h3>
           <div class="where">University at Buffalo · ASAP plastic-sort project</div>
           <p>Collecting and validating visible and infrared optical measurements from cameras, photodetectors, filters and illumination rigs. This data feeds spectral analysis, sensor calibration and future ML-based plastic classification.</p>
-        </div>
-      </li>
-      <li class="job">
-        <span class="when">2025 – now</span>
-        <div>
-          <h3>MS, Computer Science (AI/ML)</h3>
-          <div class="where">University at Buffalo, SUNY · GPA 3.7</div>
-          <p>Deep Learning, Computer Vision &amp; Image Processing, Statistical Data Mining, Data-Intensive Computing, Computer Security.</p>
         </div>
       </li>
       <li class="job">
@@ -504,6 +626,20 @@
           <h3>Data Science Intern</h3>
           <div class="where">YHills · Remote</div>
           <p>Built fraud, taxi fare and vaccination prediction models with 99%, 97% and 85% accuracy, comparing tree ensembles, SVMs and regression.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="education" class="section" aria-labelledby="h-edu">
+    <div class="sec-head"><h2 id="h-edu">Education</h2></div>
+    <ol class="timeline">
+      <li class="job">
+        <span class="when">2025 – now</span>
+        <div>
+          <h3>MS, Computer Science (AI/ML)</h3>
+          <div class="where">University at Buffalo, SUNY · GPA 3.7</div>
+          <p>Deep Learning, Computer Vision &amp; Image Processing, Statistical Data Mining, Data-Intensive Computing, Computer Security.</p>
         </div>
       </li>
       <li class="job">
