@@ -127,8 +127,11 @@
   .p-links svg { width: 14px; height: 14px; fill: currentColor; }
   .p-links .todo { font: 400 0.78rem/1 var(--mono); padding: 8px 12px; border: 1px dashed var(--line); border-radius: 999px; color: var(--muted); }
 
-  .more { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
-  .more a { display: grid; gap: 4px; padding: 16px; border: 1px solid var(--line); border-radius: calc(var(--radius) - 4px); text-decoration: none; height: 100%; background: var(--surface); }
+  .more { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+  .more .card { display: grid; gap: 10px; align-content: start; padding: 18px; border: 1px solid var(--line); border-radius: calc(var(--radius) - 4px); background: var(--surface); }
+  .more .card div:first-child { display: grid; gap: 2px; }
+  .more .card p { margin: 0; color: var(--muted); font-size: 0.9rem; text-wrap: pretty; }
+  .more .card .p-links a { padding: 6px 10px; font-size: 0.8rem; }
   .more a:hover { border-color: var(--accent); }
   .more b { font-weight: 600; font-size: 0.95rem; }
   .more span { font: 400 0.76rem/1.4 var(--mono); color: var(--muted); }
@@ -205,7 +208,7 @@
   .t-bento .contact { background: var(--fg); color: var(--bg); border-radius: var(--radius); padding: clamp(28px, 5vw, 56px); margin-block: 40px 24px; }
   .t-bento .contact .copy { background: transparent; color: inherit; border-color: color-mix(in srgb, var(--bg) 30%, transparent); }
   .t-bento .contact .btn { background: transparent; color: inherit; border-color: color-mix(in srgb, var(--bg) 30%, transparent); }
-  .t-bento .more a { border-color: transparent; }
+  .t-bento .more .card { border-color: transparent; }
 
   /* Responsive */
   @media (max-width: 900px) {
@@ -256,9 +259,9 @@
 <main id="top" class="wrap">
   <section class="hero" aria-label="Introduction">
     <div class="hero-text">
-      <span class="eyebrow">Open to ML and computer vision roles</span>
+      <span class="eyebrow">Open to AI/ML, software engineering &amp; data science roles</span>
       <h1>I build models that <em>see</em> the world.</h1>
-      <p class="lede">I'm Pranay, a machine learning engineer focused on <strong>computer vision</strong>. I'm doing my MS in Computer Science (AI/ML) at the <strong>University at Buffalo</strong>, where I research optical sensing for autonomous plastic sorting.</p>
+      <p class="lede">I'm Pranay, a software and machine learning engineer focused on <strong>AI and computer vision</strong>. I'm doing my MS in Computer Science (AI/ML) at the <strong>University at Buffalo</strong>, where I research optical sensing for autonomous plastic sorting.</p>
       <div class="cta">
         <a class="btn primary" href="#projects">View projects</a>
         <a class="btn" href="https://github.com/pranaylachuluri" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>GitHub</a>
@@ -273,7 +276,7 @@
       <div class="fact"><b>3.7</b><span>GPA, MS at UB</span></div>
       <div class="fact"><b>30.19 dB</b><span>best PSNR, ShadowFix</span></div>
       <div class="fact"><b>59</b><span>object classes detected</span></div>
-      <div class="fact"><b>4</b><span>ML projects shipped</span></div>
+      <div class="fact"><b>12</b><span>projects shipped</span></div>
     </div>
     <div class="spectrum" aria-hidden="true"></div>
   </section>
@@ -281,7 +284,7 @@
   <section id="projects" class="section" aria-labelledby="h-projects">
     <div class="sec-head">
       <h2 id="h-projects">Projects</h2>
-      <p>Computer vision and applied ML, from training to a working demo.</p>
+      <p>AI and computer vision, from training to a working demo.</p>
     </div>
     <div class="projects">
 
@@ -397,14 +400,64 @@
         </div>
       </article>
 
+      <article class="project">
+        <div class="shot">
+          <!-- Replace with: <img src="images/jarvis.png" alt="JARVIS voice assistant"> -->
+          <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: voice waveform of the assistant listening">
+            <rect width="400" height="250" style="fill:var(--shot)"/>
+            <rect x="52" y="119.0" width="8" height="12.0" rx="4" style="fill:var(--shot-2)"/><rect x="67" y="110.6" width="8" height="28.8" rx="4" style="fill:var(--shot-2)"/><rect x="82" y="101.8" width="8" height="46.4" rx="4" style="fill:var(--shot-2)"/><rect x="97" y="96.6" width="8" height="56.9" rx="4" style="fill:var(--shot-2)"/><rect x="112" y="98.2" width="8" height="53.6" rx="4" style="fill:var(--shot-2)"/><rect x="127" y="108.0" width="8" height="34.1" rx="4" style="fill:var(--shot-2)"/><rect x="142" y="113.9" width="8" height="22.1" rx="4" style="fill:var(--shot-2)"/><rect x="157" y="96.0" width="8" height="58.0" rx="4" style="fill:var(--accent)"/><rect x="172" y="82.3" width="8" height="85.4" rx="4" style="fill:var(--accent)"/><rect x="187" y="78.4" width="8" height="93.2" rx="4" style="fill:var(--accent)"/><rect x="202" y="87.3" width="8" height="75.5" rx="4" style="fill:var(--accent)"/><rect x="217" y="109.3" width="8" height="31.3" rx="4" style="fill:var(--accent)"/><rect x="232" y="107.0" width="8" height="36.0" rx="4" style="fill:var(--accent)"/><rect x="247" y="92.0" width="8" height="65.9" rx="4" style="fill:var(--accent)"/><rect x="262" y="87.2" width="8" height="75.5" rx="4" style="fill:var(--shot-2)"/><rect x="277" y="92.3" width="8" height="65.4" rx="4" style="fill:var(--shot-2)"/><rect x="292" y="104.0" width="8" height="42.1" rx="4" style="fill:var(--shot-2)"/><rect x="307" y="117.3" width="8" height="15.4" rx="4" style="fill:var(--shot-2)"/><rect x="322" y="110.2" width="8" height="29.6" rx="4" style="fill:var(--shot-2)"/><rect x="337" y="105.3" width="8" height="39.5" rx="4" style="fill:var(--shot-2)"/>
+            <text x="14" y="24" style="fill:var(--muted);font:12px var(--mono)">listening…</text>
+            <text x="386" y="236" text-anchor="end" style="fill:var(--muted);font:12px var(--mono)">"open youtube"</text>
+          </svg>
+        </div>
+        <div class="p-body">
+          <div class="p-top"><h3>JARVIS Voice Assistant</h3><span class="year">2023</span></div>
+          <p>A personal voice assistant inspired by Iron Man. It listens for spoken commands, answers questions from Wikipedia, runs browser tasks and plays music, replying with text-to-speech.</p>
+          <div class="tags">Python · SpeechRecognition · pyttsx3 · Wikipedia API</div>
+          <div class="p-links">
+            <a href="https://github.com/pranaylachuluri/JARVIS" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code &amp; demo videos</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="shot">
+          <!-- Replace with: <img src="images/id-verification.png" alt="ID Verification app"> -->
+          <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: college ID card with OCR boxes and a verified tick">
+            <rect width="400" height="250" style="fill:var(--shot)"/>
+            <rect x="80" y="45" width="240" height="150" rx="12" style="fill:var(--surface);stroke:var(--shot-2);stroke-width:2"/>
+            <rect x="98" y="70" width="58" height="72" rx="6" style="fill:var(--shot-2)"/>
+            <rect x="172" y="74" width="110" height="10" rx="5" style="fill:var(--shot-2)"/>
+            <rect x="172" y="98" width="80" height="10" rx="5" style="fill:var(--shot-2)"/>
+            <rect x="172" y="122" width="96" height="10" rx="5" style="fill:var(--shot-2)"/>
+            <rect x="166" y="66" width="122" height="26" style="fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:5 4"/>
+            <rect x="166" y="114" width="108" height="26" style="fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:5 4"/>
+            <rect x="98" y="160" width="150" height="14" rx="3" style="fill:var(--shot-2)"/>
+            <circle cx="308" cy="186" r="22" style="fill:#2f9e6a"/>
+            <path d="M297 186l8 8 14-15" style="fill:none;stroke:#fff;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round"/>
+            <text x="14" y="24" style="fill:var(--muted);font:12px var(--mono)">OCR scan</text>
+          </svg>
+        </div>
+        <div class="p-body">
+          <div class="p-top"><h3>College ID Verification App</h3><span class="year">2023</span></div>
+          <p>An Android app that scans a student ID card, reads it with OCR and tells you whether the ID is valid. Signed release APKs are included in the repo.</p>
+          <div class="tags">Java · Android · OCR</div>
+          <div class="p-links">
+            <a href="https://github.com/pranaylachuluri/ID-Verification" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code &amp; APK</a>
+          </div>
+        </div>
+      </article>
+
     </div>
 
-    <div class="sec-head" style="margin-top:12px"><h3>More on GitHub</h3></div>
+    <div class="sec-head" style="margin-top:20px"><h3>Software, web &amp; data</h3></div>
     <ul class="more">
-      <li><a href="https://github.com/pranaylachuluri/JARVIS" target="_blank" rel="noopener"><b>JARVIS</b><span>Python</span></a></li>
-      <li><a href="https://github.com/pranaylachuluri/ID-Verification" target="_blank" rel="noopener"><b>ID Verification</b><span>Java</span></a></li>
-      <li><a href="https://github.com/pranaylachuluri/Airpods-website" target="_blank" rel="noopener"><b>AirPods Website</b><span>HTML · CSS</span></a></li>
-      <li><a href="https://github.com/pranaylachuluri/starwars-planets" target="_blank" rel="noopener"><b>Star Wars Planets</b><span>JavaScript</span></a></li>
+      <li class="card"><div><b>Star Wars Planets</b><span>React · REST API</span></div><p>Browse planets from the Star Wars API, with a details view for each one.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/starwars-planets" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a><a href="https://starwars-planets-rouge.vercel.app/" target="_blank" rel="noopener"><svg><use href="#i-arrow"/></svg>Live</a></div></li>
+      <li class="card"><div><b>AirPods Website</b><span>HTML · SCSS · JavaScript</span></div><p>Responsive animated product page with a purchase flow.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/Airpods-website" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a><a href="https://pranaylachuluri.github.io/Airpods-website/" target="_blank" rel="noopener"><svg><use href="#i-arrow"/></svg>Live</a></div></li>
+      <li class="card"><div><b>Blackjack</b><span>JavaScript</span></div><p>Browser card game: draw until you hit 21 without going over.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/Black-Jack" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a><a href="https://pranaylachuluri.github.io/Black-Jack/" target="_blank" rel="noopener"><svg><use href="#i-arrow"/></svg>Live</a></div></li>
+      <li class="card"><div><b>ML Model Collection</b><span>Python · Scikit-learn</span></div><p>Fraud, taxi fare, vaccination and music taste models from my data science internship.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/Machine-Learning-Models" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a></div></li>
+      <li class="card"><div><b>Minutes Life</b><span>Kotlin · Android</span></div><p>Android app that tells you your age in minutes from a picked birthday.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/MinutesLife-App" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a></div></li>
+      <li class="card"><div><b>YouTube Clone</b><span>HTML · CSS</span></div><p>A YouTube home page clone built with plain HTML and CSS.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/Youtube-clone" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a></div></li>
     </ul>
   </section>
 
