@@ -106,6 +106,17 @@
   h2 { margin: 0; font: 700 clamp(1.8rem, 3.6vw, 2.4rem)/1.1 var(--display); letter-spacing: -0.02em; }
   .sec-head p { margin: 0; color: var(--muted); font-size: 0.95rem; }
 
+  /* About */
+  .about-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+  .about-text { display: grid; gap: 16px; min-width: 0; }
+  .about-text p { margin: 0; max-width: 64ch; color: var(--muted); text-wrap: pretty; }
+  .about-text .about-lead { font: 500 clamp(1.2rem, 2.2vw, 1.45rem)/1.45 var(--display); color: var(--fg); letter-spacing: -0.01em; }
+  .about-facts { margin: 0; display: grid; border-top: 1px solid var(--line); }
+  .about-facts div { display: grid; gap: 2px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+  .about-facts dt { font: 400 0.76rem/1.4 var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .about-facts dd { margin: 0; font-weight: 500; }
+  @media (max-width: 820px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+
   /* Projects */
   .projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 28px; }
   .project { display: grid; gap: 16px; align-content: start; min-width: 0; }
@@ -381,6 +392,7 @@
   <div class="wrap">
     <a class="logo" href="#top">Pranay Lachuluri</a>
     <ul>
+      <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -412,6 +424,26 @@
       <div class="fact"><b>12</b><span>projects shipped</span></div>
     </div>
     <div class="spectrum" aria-hidden="true"></div>
+  </section>
+
+  <section id="about" class="section about" aria-labelledby="h-about">
+    <div class="sec-head"><h2 id="h-about">About me</h2></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="about-lead">I'm a Master's student in Computer Science (AI/ML) at the University at Buffalo. I like turning raw images and sensor data into models that do something useful in the real world.</p>
+        <p>My path into AI started during my bachelor's in Computer Science (AI/ML) in Hyderabad. A data science internship got me building and comparing classic models for fraud detection, fare prediction and vaccination forecasting. From there I moved into deep learning and computer vision: real-time sign language recognition with MediaPipe, a U-Net that removes shadows from photos, and a YOLOv8 detector that finds litter in cluttered scenes.</p>
+        <p>I care about the whole pipeline, not just the model. That means collecting and cleaning data, choosing the right metrics, training carefully, and then shipping a demo people can try. Most of my projects end with a Gradio or Flask app for exactly that reason.</p>
+        <p>As a graduate research assistant on the ASAP project, I work with a multi-sensor rig of hyperspectral, RGB and thermal cameras and mmWave radar. We're collecting the data that will teach a low-cost system to identify plastics for autonomous recycling. Before grad school I worked at Genpact on a Google/YouTube operations team, where I learned to meet strict quality standards and trained in generative and agentic AI.</p>
+        <p>I'm looking for roles in AI/ML engineering, computer vision, data science and software engineering, where I can keep building things that see, measure and decide.</p>
+      </div>
+      <dl class="about-facts">
+        <div><dt>Based in</dt><dd>Buffalo, NY</dd></div>
+        <div><dt>Studying</dt><dd>MS Computer Science (AI/ML), University at Buffalo</dd></div>
+        <div><dt>Research</dt><dd>Multi-sensor plastic sensing (ASAP)</dd></div>
+        <div><dt>Focus</dt><dd>Computer vision, deep learning, applied ML</dd></div>
+        <div><dt>Open to</dt><dd>AI/ML, CV, data science &amp; software roles</dd></div>
+      </dl>
+    </div>
   </section>
 
   <section id="projects" class="section" aria-labelledby="h-projects">
@@ -469,6 +501,9 @@
           <p>Fine-tuned YOLOv8m on a 59-class TACO-derived dataset of cluttered waste scenes, then added heatmaps, a cleanliness score and an interactive Gradio assistant.</p>
           <ul class="metrics"><li><b>59</b> classes</li><li><b>832 px</b> input</li><li><b>0.183</b> mAP@50</li></ul>
           <div class="tags">YOLOv8 · AdamW · Mosaic/MixUp · OpenCV · Gradio</div>
+          <div class="p-links">
+            <a href="https://github.com/pranaylachuluri/trash-detection-yolov8" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a>
+          </div>
         </div>
       </article>
 
