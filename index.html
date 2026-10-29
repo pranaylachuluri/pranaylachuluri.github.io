@@ -522,7 +522,30 @@
 
       <article class="project" data-detail="shadowfix">
         <div class="shot">
-          <img src="images/shadowfix.jpg" alt="ISTD test photo: shadowed input on the left, ShadowFix output on the right" loading="lazy">
+          <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: a cast shadow on tiled ground, removed on the right half by the U-Net">
+            <defs>
+              <clipPath id="sf-left"><rect width="200" height="250"/></clipPath>
+              <clipPath id="sf-right"><rect x="200" width="200" height="250"/></clipPath>
+            </defs>
+            <rect width="400" height="250" style="fill:var(--shot)"/>
+            <g style="stroke:var(--shot-2);stroke-width:2">
+              <path d="M0 62H400M0 109H400M0 156H400M0 203H400"/>
+              <path d="M50 0V250M100 0V250M150 0V250M250 0V250M300 0V250M350 0V250"/>
+            </g>
+            <g clip-path="url(#sf-left)">
+              <path d="M58 38C92 22 132 30 150 54C166 76 160 104 138 118L196 250H96L102 126C70 120 48 98 46 72C45 58 49 45 58 38Z" style="fill:var(--fg);opacity:.32"/>
+            </g>
+            <g clip-path="url(#sf-right)">
+              <path d="M258 38C292 22 332 30 350 54C366 76 360 104 338 118L396 250H296L302 126C270 120 248 98 246 72C245 58 249 45 258 38Z" style="fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:6 5;opacity:.85"/>
+            </g>
+            <rect x="198.5" y="0" width="3" height="250" style="fill:var(--surface)"/>
+            <circle cx="200" cy="125" r="15" style="fill:var(--surface);stroke:var(--line)"/>
+            <path d="M195 119l-6 6 6 6M205 119l6 6-6 6" style="fill:none;stroke:var(--fg);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"/>
+            <text x="14" y="24" style="fill:var(--muted);font:12px var(--mono)">shadow input</text>
+            <text x="386" y="24" text-anchor="end" style="fill:var(--muted);font:12px var(--mono)">restored</text>
+            <rect x="282" y="214" width="106" height="24" rx="4" style="fill:var(--accent)"/>
+            <text x="335" y="230" text-anchor="middle" style="fill:var(--accent-ink);font:12px var(--mono)">30.19 dB PSNR</text>
+          </svg>
           <span class="peek" aria-hidden="true">View details<svg><use href="#i-arrow"/></svg></span>
         </div>
         <div class="p-body">
