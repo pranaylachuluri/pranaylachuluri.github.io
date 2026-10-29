@@ -378,6 +378,73 @@
     .skills, .more { grid-template-columns: 1fr; }
     .switcher span { display: none; }
   }
+
+  /* Project details: hover preview on cards, expanded view in a dialog */
+  .project[data-detail] .shot { cursor: zoom-in; }
+  .project[data-detail] .shot img, .project[data-detail] .shot svg { transition: transform .35s ease; }
+  .project[data-detail]:hover .shot img, .project[data-detail]:hover .shot svg,
+  .project[data-detail] .shot:focus-visible img, .project[data-detail] .shot:focus-visible svg { transform: scale(1.04); }
+  .shot .peek { position: absolute; right: 10px; bottom: 10px; display: inline-flex; align-items: center; gap: 6px; font: 500 0.78rem/1 var(--body); color: var(--accent-ink); background: var(--accent); padding: 8px 11px; border-radius: 999px; opacity: 0; transform: translateY(6px); transition: opacity .2s, transform .2s; pointer-events: none; }
+  .shot .peek svg { width: 12px; height: 12px; fill: currentColor; transform: none !important; }
+  .project[data-detail]:hover .peek, .project[data-detail] .shot:focus-visible .peek { opacity: 1; transform: none; }
+  @media (hover: none) { .shot .peek { opacity: 1; transform: none; } }
+  .p-links .more-btn { display: inline-flex; align-items: center; gap: 6px; font: 500 0.85rem/1 var(--body); padding: 8px 12px; border: 1px solid var(--fg); border-radius: 999px; background: var(--fg); color: var(--bg); cursor: pointer; }
+  .p-links .more-btn:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .p-links .more-btn svg { width: 12px; height: 12px; fill: currentColor; }
+
+  dialog.pd { width: min(1080px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--fg); box-shadow: 0 30px 80px rgba(0,0,0,.35); overflow: hidden; }
+  dialog.pd[open] { display: flex; flex-direction: column; animation: pd-in .22s ease; }
+  dialog.pd::backdrop { background: rgba(10,12,16,.62); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); }
+  @keyframes pd-in { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { dialog.pd[open] { animation: none; } }
+  .pd-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 22px 26px 16px; border-bottom: 1px solid var(--line); }
+  .pd-head h2 { font-size: clamp(1.35rem, 3vw, 1.9rem); }
+  .pd-head p { margin: 6px 0 0; color: var(--muted); font-size: .95rem; }
+  .pd-close { flex: none; width: 38px; height: 38px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); font: 400 1.4rem/1 var(--body); cursor: pointer; }
+  .pd-close:hover { border-color: var(--fg); }
+  .pd-body { overflow-y: auto; padding: 22px 26px 30px; display: grid; gap: 28px; overscroll-behavior: contain; }
+  .pd-body > * { min-width: 0; }
+  .pd-body h3 { font-size: 1.05rem; margin-bottom: 10px; }
+  .pd-body p, .pd-body li { color: var(--muted); }
+  .pd-body p { margin: 0; max-width: 72ch; }
+  .pd-body ul.pts { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; max-width: 76ch; }
+  .pd-body ul.pts b { color: var(--fg); font-weight: 600; }
+  .pd-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+  .pd-stats div { border: 1px solid var(--line); border-radius: calc(var(--radius) - 4px); padding: 14px 16px; display: grid; gap: 2px; }
+  .pd-stats b { font: 600 1.45rem/1.1 var(--display); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+  .pd-stats span { font-size: .82rem; color: var(--muted); }
+  .gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .gallery figure { margin: 0; display: grid; gap: 8px; align-content: start; }
+  .gallery figure.wide { grid-column: 1 / -1; }
+  .gallery button { padding: 0; border: 1px solid var(--line); border-radius: calc(var(--radius) - 4px); overflow: hidden; background: var(--shot); cursor: zoom-in; display: block; width: 100%; }
+  .gallery img { display: block; width: 100%; height: auto; transition: transform .3s ease; }
+  .gallery button:hover img { transform: scale(1.02); }
+  .gallery figcaption { font-size: .84rem; color: var(--muted); line-height: 1.45; }
+  .pd-table { width: 100%; border-collapse: collapse; font-size: .9rem; font-variant-numeric: tabular-nums; }
+  .pd-table th, .pd-table td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); }
+  .pd-table th { font: 500 .74rem/1.3 var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .pd-table tr.best td { color: var(--fg); font-weight: 600; }
+  .pd-scroll { overflow-x: auto; }
+  .flow { width: 100%; height: auto; display: block; }
+  .flow .box { fill: var(--shot); stroke: var(--line); }
+  .flow .box.hl { fill: color-mix(in srgb, var(--accent) 14%, var(--surface)); stroke: var(--accent); }
+  .flow text { fill: var(--fg); font: 500 13px var(--body); }
+  .flow .sub { fill: var(--muted); font: 400 11px var(--mono); }
+  .flow .arr { stroke: var(--muted); stroke-width: 1.5; fill: none; marker-end: url(#pd-arrow); }
+  .term { background: #0e1116; color: #d6dde6; border-radius: calc(var(--radius) - 4px); padding: 16px 18px; font: 400 .84rem/1.65 var(--mono); overflow-x: auto; border: 1px solid #222832; }
+  .term .u { color: #7fd1ff; } .term .j { color: #9be29b; } .term .c { color: #6b7686; }
+  .pd-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .pd-note { font-size: .82rem; color: var(--muted); border-left: 3px solid var(--line); padding-left: 12px; }
+  .lb { position: fixed; inset: 0; z-index: 2; display: none; place-items: center; background: rgba(6,8,11,.92); padding: 18px; cursor: zoom-out; }
+  .lb.on { display: grid; }
+  .lb img { max-width: 100%; max-height: calc(100dvh - 90px); object-fit: contain; border-radius: 6px; }
+  .lb p { margin: 10px 0 0; color: #c9d0d8; font-size: .88rem; text-align: center; max-width: 80ch; }
+  @media (max-width: 720px) {
+    dialog.pd { width: 100vw; max-width: 100vw; max-height: 100dvh; height: 100dvh; border-radius: 0; border: 0; }
+    .pd-head, .pd-body { padding-inline: 16px; }
+    .gallery { grid-template-columns: 1fr; }
+  }
+  body.pd-lock { overflow: hidden; }
 </style>
 </head>
 <body>
@@ -453,9 +520,10 @@
     </div>
     <div class="projects">
 
-      <article class="project">
+      <article class="project" data-detail="shadowfix">
         <div class="shot">
           <img src="images/shadowfix.jpg" alt="ISTD test photo: shadowed input on the left, ShadowFix output on the right" loading="lazy">
+          <span class="peek" aria-hidden="true">View details<svg><use href="#i-arrow"/></svg></span>
         </div>
         <div class="p-body">
           <div class="p-top"><h3>ShadowFix AI</h3><span class="year">2026</span></div>
@@ -463,12 +531,13 @@
           <ul class="metrics"><li><b>30.19 dB</b> PSNR</li><li><b>0.951</b> SSIM</li><li><b>+9.63 dB</b> vs input</li></ul>
           <div class="tags">PyTorch · U-Net · AMP · OpenCV · Gradio</div>
           <div class="p-links">
+            <button class="more-btn" type="button">Details<svg><use href="#i-arrow"/></svg></button>
             <a href="https://github.com/pranaylachuluri/ShadowFix" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a>
           </div>
         </div>
       </article>
 
-      <article class="project">
+      <article class="project" data-detail="trash">
         <div class="shot">
           <!-- Replace with: <img src="images/trash-detection.png" alt="YOLOv8 detecting trash"> -->
           <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: detector drawing labelled boxes around litter">
@@ -485,6 +554,7 @@
             <rect x="286" y="60" width="80" height="80" style="fill:none;stroke:var(--fg);stroke-width:2;stroke-dasharray:5 4;opacity:.6"/>
             <text x="290" y="156" style="fill:var(--muted);font:11px var(--mono)">wrapper .44</text>
           </svg>
+          <span class="peek" aria-hidden="true">View details<svg><use href="#i-arrow"/></svg></span>
         </div>
         <div class="p-body">
           <div class="p-top"><h3>Trash Detection with YOLOv8</h3><span class="year">2026</span></div>
@@ -492,12 +562,13 @@
           <ul class="metrics"><li><b>59</b> classes</li><li><b>832 px</b> input</li><li><b>0.183</b> mAP@50</li></ul>
           <div class="tags">YOLOv8 · AdamW · Mosaic/MixUp · OpenCV · Gradio</div>
           <div class="p-links">
+            <button class="more-btn" type="button">Details<svg><use href="#i-arrow"/></svg></button>
             <a href="https://github.com/pranaylachuluri/trash-detection-yolov8" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a>
           </div>
         </div>
       </article>
 
-      <article class="project">
+      <article class="project" data-detail="sign">
         <div class="shot">
           <!-- Replace with: <img src="images/sign-language.png" alt="Sign language detection demo"> -->
           <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: hand landmarks tracked by MediaPipe">
@@ -520,18 +591,20 @@
             <text x="14" y="24" style="fill:var(--muted);font:12px var(--mono)">21 landmarks</text>
             <text x="386" y="236" text-anchor="end" style="fill:var(--muted);font:12px var(--mono)">live · webcam</text>
           </svg>
+          <span class="peek" aria-hidden="true">View details<svg><use href="#i-arrow"/></svg></span>
         </div>
         <div class="p-body">
           <div class="p-top"><h3>Real-time Sign Language Detection</h3><span class="year">2024</span></div>
           <p>Recognises hand gestures live from a webcam. MediaPipe extracts hand landmarks, a custom Keras network classifies them, and OpenCV shows the prediction on the video feed.</p>
           <div class="tags">TensorFlow/Keras · MediaPipe · OpenCV · NumPy</div>
           <div class="p-links">
+            <button class="more-btn" type="button">Details<svg><use href="#i-arrow"/></svg></button>
             <a href="https://github.com/pranaylachuluri/Sign-Language-detection" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a>
           </div>
         </div>
       </article>
 
-      <article class="project">
+      <article class="project" data-detail="car">
         <div class="shot">
           <!-- Replace with: <img src="images/car-price.png" alt="Car price prediction app"> -->
           <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: resale price falling with car age, with a fitted regression line">
@@ -547,18 +620,20 @@
             <text x="370" y="230" text-anchor="end" style="fill:var(--muted);font:12px var(--mono)">age (years)</text>
             <text x="58" y="24" style="fill:var(--muted);font:12px var(--mono)">resale price</text>
           </svg>
+          <span class="peek" aria-hidden="true">View details<svg><use href="#i-arrow"/></svg></span>
         </div>
         <div class="p-body">
           <div class="p-top"><h3>Car Price Prediction App</h3><span class="year">2023</span></div>
           <p>Estimates used-car resale prices from make, model, year, fuel type and mileage. A scikit-learn pipeline is served from Flask with a browser form for live predictions.</p>
           <div class="tags">Scikit-learn · Pandas · Flask · JavaScript</div>
           <div class="p-links">
+            <button class="more-btn" type="button">Details<svg><use href="#i-arrow"/></svg></button>
             <a href="https://github.com/pranaylachuluri/Car-prize-prediction" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a>
           </div>
         </div>
       </article>
 
-      <article class="project">
+      <article class="project" data-detail="jarvis">
         <div class="shot">
           <!-- Replace with: <img src="images/jarvis.png" alt="JARVIS voice assistant"> -->
           <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: voice waveform of the assistant listening">
@@ -567,18 +642,20 @@
             <text x="14" y="24" style="fill:var(--muted);font:12px var(--mono)">listening…</text>
             <text x="386" y="236" text-anchor="end" style="fill:var(--muted);font:12px var(--mono)">"open youtube"</text>
           </svg>
+          <span class="peek" aria-hidden="true">View details<svg><use href="#i-arrow"/></svg></span>
         </div>
         <div class="p-body">
           <div class="p-top"><h3>JARVIS Voice Assistant</h3><span class="year">2023</span></div>
           <p>A personal voice assistant inspired by Iron Man. It listens for spoken commands, answers questions from Wikipedia, runs browser tasks and plays music, replying with text-to-speech.</p>
           <div class="tags">Python · SpeechRecognition · pyttsx3 · Wikipedia API</div>
           <div class="p-links">
+            <button class="more-btn" type="button">Details<svg><use href="#i-arrow"/></svg></button>
             <a href="https://github.com/pranaylachuluri/JARVIS" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code &amp; demo videos</a>
           </div>
         </div>
       </article>
 
-      <article class="project">
+      <article class="project" data-detail="id">
         <div class="shot">
           <!-- Replace with: <img src="images/id-verification.png" alt="ID Verification app"> -->
           <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: college ID card with OCR boxes and a verified tick">
@@ -595,12 +672,14 @@
             <path d="M297 186l8 8 14-15" style="fill:none;stroke:#fff;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round"/>
             <text x="14" y="24" style="fill:var(--muted);font:12px var(--mono)">OCR scan</text>
           </svg>
+          <span class="peek" aria-hidden="true">View details<svg><use href="#i-arrow"/></svg></span>
         </div>
         <div class="p-body">
           <div class="p-top"><h3>College ID Verification App</h3><span class="year">2023</span></div>
           <p>An Android app that scans a student ID card, reads it with OCR and tells you whether the ID is valid. Signed release APKs are included in the repo.</p>
           <div class="tags">Java · Android · OCR</div>
           <div class="p-links">
+            <button class="more-btn" type="button">Details<svg><use href="#i-arrow"/></svg></button>
             <a href="https://github.com/pranaylachuluri/ID-Verification" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code &amp; APK</a>
           </div>
         </div>
@@ -702,6 +781,260 @@
   <footer><span>© 2026 Pranay Lachuluri</span><span>Buffalo, NY</span></footer>
 </main>
 
+<!-- Project details, opened from the project cards -->
+<dialog class="pd" id="pd" aria-labelledby="pd-title">
+  <div class="pd-head">
+    <div><h2 id="pd-title"></h2><p id="pd-sub"></p></div>
+    <button class="pd-close" type="button" aria-label="Close project details">×</button>
+  </div>
+  <div class="pd-body" id="pd-body"></div>
+  <div class="lb" id="lb" role="dialog" aria-label="Enlarged image"><div><img alt=""><p></p></div></div>
+</dialog>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="pd-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--muted)"/></marker></defs></svg>
+
+<template id="pd-shadowfix" data-title="ShadowFix AI" data-sub="Shadow removal and image restoration · UB capstone · Summer 2026">
+  <section class="pd-stats">
+    <div><b>30.19 dB</b><span>PSNR, mask-guided U-Net</span></div>
+    <div><b>0.951</b><span>SSIM on 540 test images</span></div>
+    <div><b>+9.63 dB</b><span>over the shadowed input</span></div>
+    <div><b>+5.49 dB</b><span>over traditional correction</span></div>
+  </section>
+  <section>
+    <h3>The app</h3>
+    <div class="gallery">
+      <figure class="wide"><button type="button"><img src="images/projects/shadowfix/app-automatic.jpg" alt="ShadowFix app showing an original shadowed pavement photo next to the restored version" loading="lazy"></button><figcaption>Automatic mode: upload a photo and the U-Net returns the restored image, with a before/after slider and download.</figcaption></figure>
+      <figure><button type="button"><img src="images/projects/shadowfix/app-guided.jpg" alt="Guided mode result with a person's shadow removed from paving stones" loading="lazy"></button><figcaption>Guided mode: paint over the shadow and the restoration is blended only into that region.</figcaption></figure>
+      <figure><button type="button"><img src="images/projects/shadowfix/guided-analysis.jpg" alt="Painted shadow mask beside a table of shadow coverage, severity and strength" loading="lazy"></button><figcaption>Guided analysis reports shadow coverage, severity and the Natural / Balanced / Strong strength setting.</figcaption></figure>
+      <figure class="wide"><button type="button"><img src="images/projects/shadowfix/app-wall.jpg" alt="Wall photo before and after automatic shadow removal" loading="lazy"></button><figcaption>A real-world wall photo outside the training data, before and after.</figcaption></figure>
+    </div>
+  </section>
+  <section>
+    <h3>Results on the ISTD test split</h3>
+    <div class="pd-scroll"><table class="pd-table">
+      <thead><tr><th>Method</th><th>PSNR</th><th>SSIM</th><th>Shadow PSNR</th><th>Non-shadow PSNR</th></tr></thead>
+      <tbody>
+        <tr><td>Shadow input</td><td>20.56</td><td>0.910</td><td>13.41</td><td>26.48</td></tr>
+        <tr><td>Traditional correction</td><td>24.70</td><td>0.934</td><td>21.52</td><td>25.94</td></tr>
+        <tr><td>RGB U-Net baseline</td><td>27.18</td><td>0.932</td><td>24.10</td><td>28.55</td></tr>
+        <tr><td>RGB residual U-Net</td><td>26.59</td><td>0.927</td><td>25.06</td><td>27.22</td></tr>
+        <tr class="best"><td>Mask-guided U-Net</td><td>30.19</td><td>0.951</td><td>26.30</td><td>31.89</td></tr>
+      </tbody>
+    </table></div>
+    <div class="gallery" style="margin-top:16px">
+      <figure class="wide"><button type="button"><img src="images/projects/shadowfix/istd-comparison.jpg" alt="Shadow input, mask, traditional correction, model output and ground truth for one ISTD image" loading="lazy"></button><figcaption>One ISTD test image: input, shadow mask, traditional correction, model output and ground truth.</figcaption></figure>
+      <figure><button type="button"><img src="images/projects/shadowfix/chart-psnr.jpg" alt="Bar chart of overall PSNR by model" loading="lazy"></button><figcaption>Overall PSNR by model.</figcaption></figure>
+      <figure><button type="button"><img src="images/projects/shadowfix/chart-regions.jpg" alt="Bar chart of shadow and non-shadow region PSNR by model" loading="lazy"></button><figcaption>Shadow vs. non-shadow PSNR: the residual models fix shadows but disturb the rest of the image.</figcaption></figure>
+      <figure><button type="button"><img src="images/projects/shadowfix/chart-training.jpg" alt="Validation PSNR curves over training epochs" loading="lazy"></button><figcaption>Validation PSNR during training. The mask-guided model converges fastest.</figcaption></figure>
+      <figure><button type="button"><img src="images/projects/shadowfix/chart-baselines.jpg" alt="Bar chart comparing shadow input, traditional correction and deep learning models" loading="lazy"></button><figcaption>Deep learning vs. the input and a hand-crafted illumination correction.</figcaption></figure>
+    </div>
+  </section>
+  <section>
+    <h3>How it works</h3>
+    <ul class="pts">
+      <li><b>Data:</b> ISTD triplets of shadow image, shadow mask and shadow-free target. 1,330 training and 540 test images at 256×256.</li>
+      <li><b>Models:</b> a 7.76M-parameter U-Net in three settings: RGB in/out, residual (predicts a correction), and mask-guided (mask as a 4th channel).</li>
+      <li><b>Loss:</b> L1 with extra weight on shadow pixels plus an edge term, trained with mixed precision on a T4 GPU.</li>
+      <li><b>Evaluation:</b> PSNR and SSIM overall and inside / outside the shadow mask, against a traditional correction baseline.</li>
+      <li><b>My part:</b> dataset preparation, the training experiments, checkpoint management and debugging the Colab/Drive workflow.</li>
+    </ul>
+  </section>
+  <p class="pd-note">Team project with Odra Bira and Rohith Bharadwaj.</p>
+  <div class="pd-links"><a class="btn primary" href="https://github.com/pranaylachuluri/ShadowFix" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>View code</a></div>
+</template>
+
+<template id="pd-trash" data-title="Trash Detection & Cleanliness Analysis" data-sub="YOLOv8 litter detection · UB Deep Learning · Spring 2026">
+  <section class="pd-stats">
+    <div><b>59</b><span>litter classes</span></div>
+    <div><b>+44%</b><span>mAP@50-95 over YOLOv8n</span></div>
+    <div><b>0.60</b><span>mAP@50 on clear plastic bottles</span></div>
+    <div><b>0–100</b><span>cleanliness score per scene</span></div>
+  </section>
+  <section>
+    <h3>From photo to cleanliness score</h3>
+    <div class="gallery">
+      <figure class="wide"><button type="button"><img src="images/projects/trash-detection/pipeline.jpg" alt="Original image, YOLOv8 detection output and a heatmap overlay with a cleanliness score" loading="lazy"></button><figcaption>Original image, YOLOv8m detections and the confidence-weighted heatmap. This scene scores 0/100 (highly polluted).</figcaption></figure>
+      <figure><button type="button"><img src="images/projects/trash-detection/app.jpg" alt="Gradio app with upload, detection output, heatmap overlay and assistant summary" loading="lazy"></button><figcaption>The Gradio assistant: detections, heatmap, score and a plain-language summary for any upload.</figcaption></figure>
+      <figure><button type="button"><img src="images/projects/trash-detection/val-predictions.jpg" alt="Grid of validation images with predicted litter boxes" loading="lazy"></button><figcaption>Predictions on validation images: bottles, caps, cups, film and cigarettes on sand, grass and leaves.</figcaption></figure>
+      <figure class="wide"><button type="button"><img src="images/projects/trash-detection/training-curves.jpg" alt="Training and validation loss curves with precision, recall and mAP" loading="lazy"></button><figcaption>Training curves for the final YOLOv8m run (86 epochs, early stopping).</figcaption></figure>
+    </div>
+  </section>
+  <section>
+    <h3>Results (299 validation images, 962 objects)</h3>
+    <div class="pd-scroll"><table class="pd-table">
+      <thead><tr><th>Model</th><th>Image size</th><th>Precision</th><th>Recall</th><th>mAP@50</th><th>mAP@50-95</th></tr></thead>
+      <tbody>
+        <tr><td>YOLOv8n baseline</td><td>640</td><td>0.480</td><td>0.170</td><td>0.140</td><td>0.110</td></tr>
+        <tr><td>YOLOv8s</td><td>960</td><td>0.394</td><td>0.224</td><td>0.181</td><td>0.145</td></tr>
+        <tr class="best"><td>YOLOv8m (final)</td><td>832</td><td>0.413</td><td>0.194</td><td>0.183</td><td>0.158</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+  <section>
+    <h3>How it works</h3>
+    <ul class="pts">
+      <li><b>Data:</b> TACO-style litter photos in YOLO format, 1,200 training and 299 validation images of roads, grass, sand and leaves.</li>
+      <li><b>Training:</b> COCO-pretrained YOLOv8m at 832 px, AdamW with a cosine schedule, Mosaic and MixUp, best checkpoint by validation mAP.</li>
+      <li><b>Heatmap and score:</b> each detection adds its confidence over its box, and the 0–100 score drops with object count, size and confidence.</li>
+      <li><b>Takeaway:</b> common classes are detected well, while rare classes with few examples pull the 59-class average down.</li>
+    </ul>
+  </section>
+  <p class="pd-note">Team project with Odra Bira and Sai Rohith Bharadwaj.</p>
+  <div class="pd-links"><a class="btn primary" href="https://github.com/pranaylachuluri/trash-detection-yolov8" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>View code</a></div>
+</template>
+
+<template id="pd-sign" data-title="Real-time Sign Language Detection" data-sub="MediaPipe landmarks + LSTM · 2024">
+  <section class="pd-stats">
+    <div><b>22</b><span>gestures recognised</span></div>
+    <div><b>63</b><span>features per frame (21 landmarks × xyz)</span></div>
+    <div><b>30</b><span>frames per prediction</span></div>
+    <div><b>10</b><span>agreeing frames before a label shows</span></div>
+  </section>
+  <section>
+    <h3>Live predictions</h3>
+    <div class="gallery">
+      <figure class="wide"><button type="button"><img src="images/projects/sign-language/good.jpg" alt="Webcam frame with a thumbs-up inside a green box labelled Output: Good" loading="lazy"></button><figcaption>"Good": the hand is tracked inside the capture box and the label appears once the prediction is stable.</figcaption></figure>
+      <figure><button type="button"><img src="images/projects/sign-language/eat.jpg" alt="Webcam frame labelled Output: Eat" loading="lazy"></button><figcaption>"Eat"</figcaption></figure>
+      <figure><button type="button"><img src="images/projects/sign-language/yes.jpg" alt="Webcam frame labelled Output: Yes" loading="lazy"></button><figcaption>"Yes"</figcaption></figure>
+    </div>
+  </section>
+  <section>
+    <h3>Pipeline</h3>
+    <svg class="flow" viewBox="0 0 980 130" role="img" aria-label="Pipeline: webcam frame, MediaPipe hand landmarks, 30-frame sequence, stacked LSTM, stable prediction on screen">
+      <rect class="box" x="4" y="30" width="160" height="70" rx="10"/><text x="84" y="62" text-anchor="middle">Webcam frame</text><text class="sub" x="84" y="82" text-anchor="middle">OpenCV</text>
+      <rect class="box" x="204" y="30" width="170" height="70" rx="10"/><text x="289" y="62" text-anchor="middle">Hand landmarks</text><text class="sub" x="289" y="82" text-anchor="middle">MediaPipe · 21 × xyz</text>
+      <rect class="box" x="414" y="30" width="160" height="70" rx="10"/><text x="494" y="62" text-anchor="middle">Sequence</text><text class="sub" x="494" y="82" text-anchor="middle">last 30 frames</text>
+      <rect class="box hl" x="614" y="30" width="160" height="70" rx="10"/><text x="694" y="62" text-anchor="middle">Stacked LSTM</text><text class="sub" x="694" y="82" text-anchor="middle">64·128·64 → 22</text>
+      <rect class="box" x="814" y="30" width="162" height="70" rx="10"/><text x="895" y="62" text-anchor="middle">On-screen label</text><text class="sub" x="895" y="82" text-anchor="middle">stable 10 frames</text>
+      <path class="arr" d="M166 65H200"/><path class="arr" d="M376 65H410"/><path class="arr" d="M576 65H610"/><path class="arr" d="M776 65H810"/>
+    </svg>
+  </section>
+  <section>
+    <h3>How it works</h3>
+    <ul class="pts">
+      <li><b>Data:</b> my own recordings, collected with a keyboard-driven capture notebook, one folder per gesture.</li>
+      <li><b>Features:</b> MediaPipe Hands returns 21 landmarks per frame, flattened to 63 numbers.</li>
+      <li><b>Model:</b> three LSTM layers (64/128/64 units) and dense layers classify 30-frame sequences into 22 words such as Hello, Thank you, Eat and Good.</li>
+      <li><b>Stable output:</b> a gesture is shown only after it wins 10 predictions in a row above the confidence threshold, so the label doesn't flicker.</li>
+    </ul>
+  </section>
+  <div class="pd-links"><a class="btn primary" href="https://github.com/pranaylachuluri/Sign-Language-detection" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>View code</a></div>
+</template>
+
+<template id="pd-car" data-title="Car Price Prediction App" data-sub="Scikit-learn pipeline served with Flask · 2023">
+  <section class="pd-stats">
+    <div><b>0.64</b><span>R², 5-fold cross-validation</span></div>
+    <div><b>₹1.48 L</b><span>mean absolute error (test)</span></div>
+    <div><b>5</b><span>inputs: make, model, year, fuel, km</span></div>
+    <div><b>0.57</b><span>R² on the held-out 20%</span></div>
+  </section>
+  <section>
+    <h3>The app and the model</h3>
+    <div class="gallery">
+      <figure class="wide"><button type="button"><img src="images/projects/car-price/app.jpg" alt="Car price web form with Hyundai Elite i20, 2017, petrol, 35,000 km and a predicted price of 4,97,497 rupees" loading="lazy"></button><figcaption>The Flask app: pick the company and model (the model list filters by company), year, fuel and kilometres to get a price.</figcaption></figure>
+      <figure class="wide"><button type="button"><img src="images/projects/car-price/pred-vs-actual.jpg" alt="Scatter plot of predicted versus actual car prices on the test set" loading="lazy"></button><figcaption>Predicted vs. actual price on the held-out 20%. Accurate for everyday cars under ₹10 lakh; rare luxury cars are under-predicted.</figcaption></figure>
+    </div>
+  </section>
+  <section>
+    <h3>Pipeline</h3>
+    <svg class="flow" viewBox="0 0 980 130" role="img" aria-label="Pipeline: cleaned Quikr listings, one-hot encoding, linear regression, Flask API, browser form">
+      <rect class="box" x="4" y="30" width="160" height="70" rx="10"/><text x="84" y="62" text-anchor="middle">Car listings</text><text class="sub" x="84" y="82" text-anchor="middle">cleaned Quikr data</text>
+      <rect class="box" x="204" y="30" width="170" height="70" rx="10"/><text x="289" y="62" text-anchor="middle">One-hot encoding</text><text class="sub" x="289" y="82" text-anchor="middle">name · company · fuel</text>
+      <rect class="box hl" x="414" y="30" width="160" height="70" rx="10"/><text x="494" y="62" text-anchor="middle">Linear regression</text><text class="sub" x="494" y="82" text-anchor="middle">scikit-learn pipeline</text>
+      <rect class="box" x="614" y="30" width="160" height="70" rx="10"/><text x="694" y="62" text-anchor="middle">Flask /predict</text><text class="sub" x="694" y="82" text-anchor="middle">validates inputs</text>
+      <rect class="box" x="814" y="30" width="162" height="70" rx="10"/><text x="895" y="62" text-anchor="middle">Browser form</text><text class="sub" x="895" y="82" text-anchor="middle">price in ₹</text>
+      <path class="arr" d="M166 65H200"/><path class="arr" d="M376 65H410"/><path class="arr" d="M576 65H610"/><path class="arr" d="M776 65H810"/>
+    </svg>
+  </section>
+  <section>
+    <h3>How it works</h3>
+    <ul class="pts">
+      <li><b>Data:</b> used-car listings from Quikr, cleaned of missing prices and malformed year and kilometre values.</li>
+      <li><b>Model:</b> one-hot encoded car name, company and fuel type plus year and kilometres, fed to linear regression. Unseen models are handled without errors.</li>
+      <li><b>Reproducible:</b> <code>train.py</code> retrains the model and reports test R², MAE and cross-validated R².</li>
+      <li><b>App:</b> Flask serves the form and a JSON endpoint that returns clear error messages for invalid inputs.</li>
+    </ul>
+  </section>
+  <div class="pd-links"><a class="btn primary" href="https://github.com/pranaylachuluri/Car-prize-prediction" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>View code</a></div>
+</template>
+
+<template id="pd-jarvis" data-title="JARVIS Voice Assistant" data-sub="Python desktop voice assistant · 2023">
+  <section>
+    <h3>A short session</h3>
+    <div class="term" role="img" aria-label="Example voice session with JARVIS">
+<span class="j">JARVIS:</span> Good evening. I am Jarvis, how may I help you?<br>
+<span class="c">Listening...  Recognizing...</span><br>
+<span class="u">You:</span> wikipedia alan turing<br>
+<span class="j">JARVIS:</span> Searching Wikipedia... According to Wikipedia, Alan Mathison Turing was an English mathematician, computer scientist, logician...<br>
+<span class="c">Listening...  Recognizing...</span><br>
+<span class="u">You:</span> search for gradio tutorials in youtube<br>
+<span class="c">→ opens YouTube search results in the browser</span><br>
+<span class="c">Listening...  Recognizing...</span><br>
+<span class="u">You:</span> what's the time<br>
+<span class="j">JARVIS:</span> Sir, the time is 18:42:07<br>
+<span class="c">Listening...  Recognizing...</span><br>
+<span class="u">You:</span> thank you<br>
+<span class="j">JARVIS:</span> Happy that I could help, signing off.
+    </div>
+    <p class="pd-note" style="margin-top:10px">Illustrative transcript of the command loop. Each reply is also spoken aloud with text-to-speech.</p>
+  </section>
+  <section>
+    <h3>Command loop</h3>
+    <svg class="flow" viewBox="0 0 980 150" role="img" aria-label="Microphone input, speech recognition, intent matching, then Wikipedia, browser, music or time actions, spoken reply">
+      <rect class="box" x="4" y="40" width="150" height="70" rx="10"/><text x="79" y="72" text-anchor="middle">Microphone</text><text class="sub" x="79" y="92" text-anchor="middle">PyAudio</text>
+      <rect class="box" x="194" y="40" width="170" height="70" rx="10"/><text x="279" y="72" text-anchor="middle">Speech to text</text><text class="sub" x="279" y="92" text-anchor="middle">SpeechRecognition</text>
+      <rect class="box hl" x="404" y="40" width="150" height="70" rx="10"/><text x="479" y="72" text-anchor="middle">Match intent</text><text class="sub" x="479" y="92" text-anchor="middle">keywords</text>
+      <rect class="box" x="594" y="4" width="180" height="40" rx="8"/><text x="684" y="29" text-anchor="middle">Wikipedia summary</text>
+      <rect class="box" x="594" y="55" width="180" height="40" rx="8"/><text x="684" y="80" text-anchor="middle">Open sites / search</text>
+      <rect class="box" x="594" y="106" width="180" height="40" rx="8"/><text x="684" y="131" text-anchor="middle">Music · time</text>
+      <rect class="box" x="814" y="40" width="162" height="70" rx="10"/><text x="895" y="72" text-anchor="middle">Spoken reply</text><text class="sub" x="895" y="92" text-anchor="middle">pyttsx3</text>
+      <path class="arr" d="M156 75H190"/><path class="arr" d="M366 75H400"/>
+      <path class="arr" d="M556 70L590 26"/><path class="arr" d="M556 75H590"/><path class="arr" d="M556 80L590 124"/>
+      <path class="arr" d="M776 26L810 66"/><path class="arr" d="M776 75H810"/><path class="arr" d="M776 124L810 86"/>
+    </svg>
+  </section>
+  <section>
+    <h3>What it does</h3>
+    <ul class="pts">
+      <li><b>Listens</b> for spoken commands and converts them to text with Google speech recognition.</li>
+      <li><b>Answers</b> questions with Wikipedia summaries, handling ambiguous or missing pages gracefully.</li>
+      <li><b>Acts:</b> opens YouTube, Google or any site, runs searches, plays music from a configurable folder and tells the time.</li>
+      <li><b>Runs anywhere:</b> the latest version works on Windows, macOS and Linux.</li>
+    </ul>
+  </section>
+  <div class="pd-links"><a class="btn primary" href="https://github.com/pranaylachuluri/JARVIS" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code &amp; demo videos</a></div>
+</template>
+
+<template id="pd-id" data-title="College ID Verification App" data-sub="Android · Java · on-device OCR · 2023">
+  <section>
+    <h3>The app</h3>
+    <div class="gallery">
+      <figure class="wide"><button type="button"><img src="images/projects/id-verification/screens.jpg" alt="Four app screens: scan prompt, take photo or gallery choice, INVALID result, VALID result" loading="lazy"></button><figcaption>Scan your ID → take a photo or pick one from the gallery → the app reads the card with OCR and shows VALID or INVALID.</figcaption></figure>
+    </div>
+  </section>
+  <section>
+    <h3>Flow</h3>
+    <svg class="flow" viewBox="0 0 980 130" role="img" aria-label="Camera or gallery image, Google Mobile Vision text recognizer, match against college name, valid or invalid result">
+      <rect class="box" x="4" y="30" width="170" height="70" rx="10"/><text x="89" y="62" text-anchor="middle">Camera / gallery</text><text class="sub" x="89" y="82" text-anchor="middle">photo of the ID card</text>
+      <rect class="box hl" x="214" y="30" width="190" height="70" rx="10"/><text x="309" y="62" text-anchor="middle">Text recognition</text><text class="sub" x="309" y="82" text-anchor="middle">Mobile Vision OCR</text>
+      <rect class="box" x="444" y="30" width="190" height="70" rx="10"/><text x="539" y="62" text-anchor="middle">Match institution</text><text class="sub" x="539" y="82" text-anchor="middle">case-insensitive</text>
+      <rect class="box" x="674" y="30" width="140" height="70" rx="10"/><text x="744" y="62" text-anchor="middle">VALID</text><text class="sub" x="744" y="82" text-anchor="middle">green tick</text>
+      <rect class="box" x="834" y="30" width="142" height="70" rx="10"/><text x="905" y="62" text-anchor="middle">INVALID</text><text class="sub" x="905" y="82" text-anchor="middle">red sign</text>
+      <path class="arr" d="M176 65H210"/><path class="arr" d="M406 65H440"/><path class="arr" d="M636 60L670 60"/><path class="arr" d="M636 70C700 120 800 120 860 102"/>
+    </svg>
+  </section>
+  <section>
+    <h3>What it does</h3>
+    <ul class="pts">
+      <li><b>Captures</b> the ID with the camera or loads it from the gallery, with runtime camera and storage permissions.</li>
+      <li><b>Reads</b> every text block on the card on-device with Google's Mobile Vision text recognizer, so no network is needed.</li>
+      <li><b>Verifies</b> the card by checking for the issuing college's name and shows a clear VALID or INVALID screen.</li>
+      <li><b>Ships</b> as installable debug and release APKs in the repository.</li>
+    </ul>
+  </section>
+  <div class="pd-links"><a class="btn primary" href="https://github.com/pranaylachuluri/ID-Verification" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code &amp; APK</a></div>
+</template>
+
 
 <script>
   (function () {
@@ -712,6 +1045,66 @@
       var fallback = function () { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected'; };
       try { navigator.clipboard.writeText(el.textContent).then(done, fallback); } catch (e) { fallback(); }
     });
+  })();
+</script>
+<script>
+  // Project details: clicking a card (or its Details button) expands it in a dialog with a gallery
+  (function () {
+    var dlg = document.getElementById('pd');
+    if (!dlg || typeof dlg.showModal !== 'function') return;
+    var body = document.getElementById('pd-body'), title = document.getElementById('pd-title'), sub = document.getElementById('pd-sub');
+    var lb = document.getElementById('lb'), lbImg = lb.querySelector('img'), lbCap = lb.querySelector('p');
+    var opener = null;
+
+    function open(slug, from) {
+      var tpl = document.getElementById('pd-' + slug);
+      if (!tpl) return;
+      title.textContent = tpl.dataset.title;
+      sub.textContent = tpl.dataset.sub;
+      body.replaceChildren(tpl.content.cloneNode(true));
+      body.scrollTop = 0;
+      opener = from || null;
+      dlg.showModal();
+      document.body.classList.add('pd-lock');
+      if (location.hash !== '#project-' + slug) history.replaceState(null, '', '#project-' + slug);
+    }
+    function closeLb() { lb.classList.remove('on'); }
+
+    document.querySelectorAll('.project[data-detail]').forEach(function (card) {
+      var slug = card.dataset.detail, shot = card.querySelector('.shot');
+      shot.setAttribute('role', 'button');
+      shot.setAttribute('tabindex', '0');
+      shot.setAttribute('aria-label', 'Open details for ' + card.querySelector('h3').textContent);
+      shot.addEventListener('click', function () { open(slug, shot); });
+      shot.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(slug, shot); } });
+      var btn = card.querySelector('.more-btn');
+      if (btn) btn.addEventListener('click', function () { open(slug, btn); });
+    });
+
+    dlg.querySelector('.pd-close').addEventListener('click', function () { dlg.close(); });
+    // Clicks on the backdrop land on the dialog element itself
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('cancel', function (e) { if (lb.classList.contains('on')) { e.preventDefault(); closeLb(); } });
+    dlg.addEventListener('close', function () {
+      closeLb();
+      document.body.classList.remove('pd-lock');
+      if (location.hash.indexOf('#project-') === 0) history.replaceState(null, '', location.pathname + location.search + '#projects');
+      if (opener) opener.focus();
+    });
+
+    body.addEventListener('click', function (e) {
+      var b = e.target.closest('.gallery button');
+      if (!b) return;
+      var img = b.querySelector('img'), cap = b.parentNode.querySelector('figcaption');
+      lbImg.src = img.currentSrc || img.src;
+      lbImg.alt = img.alt;
+      lbCap.textContent = cap ? cap.textContent : '';
+      lb.classList.add('on');
+    });
+    lb.addEventListener('click', closeLb);
+
+    var m = location.hash.match(/^#project-([\w-]+)$/);
+    if (m) open(m[1]);
   })();
 </script>
 </body>
