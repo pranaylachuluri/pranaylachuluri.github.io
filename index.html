@@ -455,26 +455,16 @@
 
       <article class="project">
         <div class="shot">
-          <!-- Replace with: <img src="images/shadowfix.png" alt="ShadowFix before and after"> -->
-          <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: shadowed image beside its restored version">
-            <rect width="400" height="250" style="fill:var(--shot)"/>
-            <rect x="0" y="170" width="400" height="80" style="fill:var(--shot-2)"/>
-            <polygon points="40,250 120,170 200,170 200,250" style="fill:var(--fg);opacity:.28"/>
-            <circle cx="95" cy="140" r="34" style="fill:var(--accent)"/>
-            <circle cx="295" cy="140" r="34" style="fill:var(--accent)"/>
-            <ellipse cx="300" cy="176" rx="34" ry="5" style="fill:var(--fg);opacity:.12"/>
-            <line x1="200" y1="0" x2="200" y2="250" style="stroke:var(--surface);stroke-width:3"/>
-            <circle cx="200" cy="125" r="13" style="fill:var(--surface)"/>
-            <path d="M195 120l-5 5 5 5M205 120l5 5-5 5" style="fill:none;stroke:var(--fg);stroke-width:2"/>
-            <text x="14" y="24" style="fill:var(--muted);font:12px var(--mono)">input</text>
-            <text x="386" y="24" text-anchor="end" style="fill:var(--muted);font:12px var(--mono)">restored</text>
-          </svg>
+          <img src="images/shadowfix.jpg" alt="ISTD test photo: shadowed input on the left, ShadowFix output on the right" loading="lazy">
         </div>
         <div class="p-body">
           <div class="p-top"><h3>ShadowFix AI</h3><span class="year">2026</span></div>
-          <p>Removes shadows from photos with a 7.76M-parameter U-Net. I compared RGB, residual and mask-guided variants on ISTD and shipped the best one in a Gradio app with adjustable strength.</p>
+          <p>Removes shadows from photos with a 7.76M-parameter U-Net. Our team compared RGB, residual and mask-guided variants on the ISTD benchmark and built a Gradio app with automatic and paint-the-shadow guided modes.</p>
           <ul class="metrics"><li><b>30.19 dB</b> PSNR</li><li><b>0.951</b> SSIM</li><li><b>+9.63 dB</b> vs input</li></ul>
           <div class="tags">PyTorch · U-Net · AMP · OpenCV · Gradio</div>
+          <div class="p-links">
+            <a href="https://github.com/pranaylachuluri/ShadowFix" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a>
+          </div>
         </div>
       </article>
 
