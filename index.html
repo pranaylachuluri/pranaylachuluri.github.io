@@ -517,6 +517,30 @@
     .js .reveal, .js .metrics li, .js .chips li { transform: none !important; transition: opacity .8s ease !important; transition-delay: var(--d, 0ms) !important; }
   }
   @keyframes fade { to { opacity: 1; } }
+
+  /* Project card illustrations */
+  .shot svg .a-draw { stroke-dasharray: 1; stroke-dashoffset: 0; }
+  .js .project .a-draw { stroke-dashoffset: 1; animation: draw var(--dur, .8s) cubic-bezier(.4,0,.2,1) var(--ad, 0ms) forwards paused; }
+  .js .project .a-pop, .js .project .a-dot { opacity: 0; transform-box: fill-box; transform-origin: center; animation: pop-in .5s cubic-bezier(.2,.9,.3,1.3) var(--ad, 0ms) forwards paused; }
+  .js .project.in .a-draw, .js .project.in .a-pop, .js .project.in .a-dot { animation-play-state: running; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+  @keyframes pop-in { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+  .a-march { animation: march 1.2s linear infinite; }
+  @keyframes march { to { stroke-dashoffset: -18; } }
+  .a-scan { animation: scan 3.6s cubic-bezier(.45,0,.55,1) infinite; }
+  @keyframes scan { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: .55; } 90% { opacity: .55; } 100% { transform: translateY(248px); opacity: 0; } }
+  .a-scan-id { animation-name: scan-id; }
+  @keyframes scan-id { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: .6; } 90% { opacity: .6; } 100% { transform: translateY(148px); opacity: 0; } }
+  .a-bar { transform-box: fill-box; transform-origin: center; animation: talk 1.1s ease-in-out var(--bd, 0ms) infinite alternate; }
+  @keyframes talk { from { transform: scaleY(.35); } to { transform: scaleY(1.08); } }
+  .project:hover .a-bar { animation-duration: .55s; }
+  @media (prefers-reduced-motion: reduce) {
+    .a-march, .a-bar, .a-scan { animation: none !important; }
+    .a-scan { display: none; }
+    .js .project .a-draw { stroke-dashoffset: 0; animation: none !important; }
+    .js .project .a-pop, .js .project .a-dot { transform: none !important; animation: fade .6s ease var(--ad, 0ms) forwards paused !important; }
+    .js .project.in .a-pop, .js .project.in .a-dot { animation-play-state: running !important; }
+  }
 </style>
 </head>
 <body>
@@ -604,8 +628,8 @@
         <div class="shot">
           <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: a cast shadow on tiled ground, removed on the right half by the U-Net">
             <defs>
-              <clipPath id="sf-left"><rect width="200" height="250"/></clipPath>
-              <clipPath id="sf-right"><rect x="200" width="200" height="250"/></clipPath>
+              <clipPath id="sf-left"><rect width="200" height="250"><animate class="sf-anim" attributeName="width" values="200;140;260;200" dur="7s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.33;.75;1" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/></rect></clipPath>
+              <clipPath id="sf-right"><rect x="200" width="200" height="250"><animate class="sf-anim" attributeName="x" values="200;140;260;200" dur="7s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.33;.75;1" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/></rect></clipPath>
             </defs>
             <rect width="400" height="250" style="fill:var(--shot)"/>
             <g style="stroke:var(--shot-2);stroke-width:2">
@@ -618,13 +642,16 @@
             <g clip-path="url(#sf-right)">
               <path d="M258 38C292 22 332 30 350 54C366 76 360 104 338 118L396 250H296L302 126C270 120 248 98 246 72C245 58 249 45 258 38Z" style="fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:6 5;opacity:.85"/>
             </g>
-            <rect x="198.5" y="0" width="3" height="250" style="fill:var(--surface)"/>
-            <circle cx="200" cy="125" r="15" style="fill:var(--surface);stroke:var(--line)"/>
-            <path d="M195 119l-6 6 6 6M205 119l6 6-6 6" style="fill:none;stroke:var(--fg);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"/>
+            <g>
+              <animateTransform class="sf-anim" attributeName="transform" type="translate" values="0 0;-60 0;60 0;0 0" dur="7s" repeatCount="indefinite" calcMode="spline" keyTimes="0;.33;.75;1" keySplines=".45 0 .55 1;.45 0 .55 1;.45 0 .55 1"/>
+              <rect x="198.5" y="0" width="3" height="250" style="fill:var(--surface)"/>
+              <circle cx="200" cy="125" r="15" style="fill:var(--surface);stroke:var(--line)"/>
+              <path d="M195 119l-6 6 6 6M205 119l6 6-6 6" style="fill:none;stroke:var(--fg);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"/>
+            </g>
             <text x="14" y="24" style="fill:var(--muted);font:12px var(--mono)">shadow input</text>
             <text x="386" y="24" text-anchor="end" style="fill:var(--muted);font:12px var(--mono)">restored</text>
-            <rect x="282" y="214" width="106" height="24" rx="4" style="fill:var(--accent)"/>
-            <text x="335" y="230" text-anchor="middle" style="fill:var(--accent-ink);font:12px var(--mono)">30.19 dB PSNR</text>
+            <g class="a-pop" style="--ad:600ms"><rect x="282" y="214" width="106" height="24" rx="4" style="fill:var(--accent)"/>
+            <text x="335" y="230" text-anchor="middle" style="fill:var(--accent-ink);font:12px var(--mono)">30.19 dB PSNR</text></g>
           </svg>
           <span class="peek" aria-hidden="true">View details<svg><use href="#i-arrow"/></svg></span>
         </div>
@@ -648,14 +675,15 @@
             <rect x="58" y="92" width="40" height="96" rx="8" transform="rotate(-18 78 140)" style="fill:var(--shot-2)"/>
             <circle cx="232" cy="168" r="28" style="fill:var(--shot-2)"/>
             <path d="M300 70l55 12-10 50-52-6z" style="fill:var(--shot-2)"/>
-            <rect x="38" y="70" width="90" height="136" style="fill:none;stroke:var(--accent);stroke-width:2.5"/>
-            <rect x="38" y="52" width="82" height="18" style="fill:var(--accent)"/>
-            <text x="44" y="65" style="fill:var(--accent-ink);font:11px var(--mono)">bottle .82</text>
-            <rect x="196" y="132" width="72" height="72" style="fill:none;stroke:var(--accent);stroke-width:2.5"/>
-            <rect x="196" y="114" width="58" height="18" style="fill:var(--accent)"/>
-            <text x="202" y="127" style="fill:var(--accent-ink);font:11px var(--mono)">can .71</text>
-            <rect x="286" y="60" width="80" height="80" style="fill:none;stroke:var(--fg);stroke-width:2;stroke-dasharray:5 4;opacity:.6"/>
-            <text x="290" y="156" style="fill:var(--muted);font:11px var(--mono)">wrapper .44</text>
+            <rect class="a-draw" pathLength="1" style="--ad:200ms;fill:none;stroke:var(--accent);stroke-width:2.5" x="38" y="70" width="90" height="136"/>
+            <g class="a-pop" style="--ad:800ms"><rect x="38" y="52" width="82" height="18" style="fill:var(--accent)"/>
+            <text x="44" y="65" style="fill:var(--accent-ink);font:11px var(--mono)">bottle .82</text></g>
+            <rect class="a-draw" pathLength="1" style="--ad:500ms;fill:none;stroke:var(--accent);stroke-width:2.5" x="196" y="132" width="72" height="72"/>
+            <g class="a-pop" style="--ad:1100ms"><rect x="196" y="114" width="58" height="18" style="fill:var(--accent)"/>
+            <text x="202" y="127" style="fill:var(--accent-ink);font:11px var(--mono)">can .71</text></g>
+            <g class="a-pop" style="--ad:1400ms"><rect class="a-march" x="286" y="60" width="80" height="80" style="fill:none;stroke:var(--fg);stroke-width:2;stroke-dasharray:5 4;opacity:.6"/>
+            <text x="290" y="156" style="fill:var(--muted);font:11px var(--mono)">wrapper .44</text></g>
+            <rect class="a-scan" x="0" y="0" width="400" height="2" style="fill:var(--accent);opacity:.5"/>
           </svg>
           <span class="peek" aria-hidden="true">View details<svg><use href="#i-arrow"/></svg></span>
         </div>
@@ -677,19 +705,19 @@
           <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: hand landmarks tracked by MediaPipe">
             <rect width="400" height="250" style="fill:var(--shot)"/>
             <g style="stroke:var(--accent);stroke-width:2.5;fill:none;stroke-linecap:round">
-              <polyline points="200,222 165,200 140,175 125,153 112,135"/>
-              <polyline points="200,222 175,145 168,110 164,87 161,67"/>
-              <polyline points="200,140 200,102 200,77 200,55"/>
-              <polyline points="224,145 230,110 233,88 236,69"/>
-              <polyline points="200,222 245,157 258,130 265,112 271,95"/>
-              <polyline points="175,145 200,140 224,145 245,157"/>
+              <polyline class="a-draw" pathLength="1" style="--ad:220ms" points="200,222 165,200 140,175 125,153 112,135"/>
+              <polyline class="a-draw" pathLength="1" style="--ad:340ms" points="200,222 175,145 168,110 164,87 161,67"/>
+              <polyline class="a-draw" pathLength="1" style="--ad:460ms" points="200,140 200,102 200,77 200,55"/>
+              <polyline class="a-draw" pathLength="1" style="--ad:580ms" points="224,145 230,110 233,88 236,69"/>
+              <polyline class="a-draw" pathLength="1" style="--ad:700ms" points="200,222 245,157 258,130 265,112 271,95"/>
+              <polyline class="a-draw" pathLength="1" style="--ad:820ms" points="175,145 200,140 224,145 245,157"/>
             </g>
             <g style="fill:var(--fg)">
-              <circle cx="200" cy="222" r="5"/><circle cx="165" cy="200" r="4"/><circle cx="140" cy="175" r="4"/><circle cx="125" cy="153" r="4"/><circle cx="112" cy="135" r="4"/>
-              <circle cx="175" cy="145" r="4"/><circle cx="168" cy="110" r="4"/><circle cx="164" cy="87" r="4"/><circle cx="161" cy="67" r="4"/>
-              <circle cx="200" cy="140" r="4"/><circle cx="200" cy="102" r="4"/><circle cx="200" cy="77" r="4"/><circle cx="200" cy="55" r="4"/>
-              <circle cx="224" cy="145" r="4"/><circle cx="230" cy="110" r="4"/><circle cx="233" cy="88" r="4"/><circle cx="236" cy="69" r="4"/>
-              <circle cx="245" cy="157" r="4"/><circle cx="258" cy="130" r="4"/><circle cx="265" cy="112" r="4"/><circle cx="271" cy="95" r="4"/>
+              <circle class="a-dot" style="--ad:735ms" cx="200" cy="222" r="5"/><circle class="a-dot" style="--ad:770ms" cx="165" cy="200" r="4"/><circle class="a-dot" style="--ad:805ms" cx="140" cy="175" r="4"/><circle class="a-dot" style="--ad:840ms" cx="125" cy="153" r="4"/><circle class="a-dot" style="--ad:875ms" cx="112" cy="135" r="4"/>
+              <circle class="a-dot" style="--ad:910ms" cx="175" cy="145" r="4"/><circle class="a-dot" style="--ad:945ms" cx="168" cy="110" r="4"/><circle class="a-dot" style="--ad:980ms" cx="164" cy="87" r="4"/><circle class="a-dot" style="--ad:1015ms" cx="161" cy="67" r="4"/>
+              <circle class="a-dot" style="--ad:1050ms" cx="200" cy="140" r="4"/><circle class="a-dot" style="--ad:1085ms" cx="200" cy="102" r="4"/><circle class="a-dot" style="--ad:1120ms" cx="200" cy="77" r="4"/><circle class="a-dot" style="--ad:1155ms" cx="200" cy="55" r="4"/>
+              <circle class="a-dot" style="--ad:1190ms" cx="224" cy="145" r="4"/><circle class="a-dot" style="--ad:1225ms" cx="230" cy="110" r="4"/><circle class="a-dot" style="--ad:1260ms" cx="233" cy="88" r="4"/><circle class="a-dot" style="--ad:1295ms" cx="236" cy="69" r="4"/>
+              <circle class="a-dot" style="--ad:1330ms" cx="245" cy="157" r="4"/><circle class="a-dot" style="--ad:1365ms" cx="258" cy="130" r="4"/><circle class="a-dot" style="--ad:1400ms" cx="265" cy="112" r="4"/><circle class="a-dot" style="--ad:1435ms" cx="271" cy="95" r="4"/>
             </g>
             <text x="14" y="24" style="fill:var(--muted);font:12px var(--mono)">21 landmarks</text>
             <text x="386" y="236" text-anchor="end" style="fill:var(--muted);font:12px var(--mono)">live · webcam</text>
@@ -715,11 +743,11 @@
             <line x1="50" y1="210" x2="370" y2="210" style="stroke:var(--shot-2);stroke-width:2"/>
             <line x1="50" y1="30" x2="50" y2="210" style="stroke:var(--shot-2);stroke-width:2"/>
             <g style="fill:var(--fg);opacity:.55">
-              <circle cx="80" cy="62" r="4"/><circle cx="96" cy="80" r="4"/><circle cx="112" cy="70" r="4"/><circle cx="130" cy="96" r="4"/><circle cx="150" cy="88" r="4"/>
-              <circle cx="170" cy="112" r="4"/><circle cx="188" cy="104" r="4"/><circle cx="206" cy="130" r="4"/><circle cx="226" cy="124" r="4"/><circle cx="246" cy="146" r="4"/>
-              <circle cx="266" cy="140" r="4"/><circle cx="286" cy="164" r="4"/><circle cx="306" cy="158" r="4"/><circle cx="326" cy="180" r="4"/><circle cx="346" cy="174" r="4"/>
+              <circle class="a-dot" style="--ad:60ms" cx="80" cy="62" r="4"/><circle class="a-dot" style="--ad:120ms" cx="96" cy="80" r="4"/><circle class="a-dot" style="--ad:180ms" cx="112" cy="70" r="4"/><circle class="a-dot" style="--ad:240ms" cx="130" cy="96" r="4"/><circle class="a-dot" style="--ad:300ms" cx="150" cy="88" r="4"/>
+              <circle class="a-dot" style="--ad:360ms" cx="170" cy="112" r="4"/><circle class="a-dot" style="--ad:420ms" cx="188" cy="104" r="4"/><circle class="a-dot" style="--ad:480ms" cx="206" cy="130" r="4"/><circle class="a-dot" style="--ad:540ms" cx="226" cy="124" r="4"/><circle class="a-dot" style="--ad:600ms" cx="246" cy="146" r="4"/>
+              <circle class="a-dot" style="--ad:660ms" cx="266" cy="140" r="4"/><circle class="a-dot" style="--ad:720ms" cx="286" cy="164" r="4"/><circle class="a-dot" style="--ad:780ms" cx="306" cy="158" r="4"/><circle class="a-dot" style="--ad:840ms" cx="326" cy="180" r="4"/><circle class="a-dot" style="--ad:900ms" cx="346" cy="174" r="4"/>
             </g>
-            <line x1="70" y1="62" x2="356" y2="186" style="stroke:var(--accent);stroke-width:3;stroke-linecap:round"/>
+            <line class="a-draw" pathLength="1" x1="70" y1="62" x2="356" y2="186" style="--ad:900ms;--dur:1.2s;stroke:var(--accent);stroke-width:3;stroke-linecap:round"/>
             <text x="370" y="230" text-anchor="end" style="fill:var(--muted);font:12px var(--mono)">age (years)</text>
             <text x="58" y="24" style="fill:var(--muted);font:12px var(--mono)">resale price</text>
           </svg>
@@ -741,7 +769,7 @@
           <!-- Replace with: <img src="images/jarvis.png" alt="JARVIS voice assistant"> -->
           <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Illustration: voice waveform of the assistant listening">
             <rect width="400" height="250" style="fill:var(--shot)"/>
-            <rect x="52" y="119.0" width="8" height="12.0" rx="4" style="fill:var(--shot-2)"/><rect x="67" y="110.6" width="8" height="28.8" rx="4" style="fill:var(--shot-2)"/><rect x="82" y="101.8" width="8" height="46.4" rx="4" style="fill:var(--shot-2)"/><rect x="97" y="96.6" width="8" height="56.9" rx="4" style="fill:var(--shot-2)"/><rect x="112" y="98.2" width="8" height="53.6" rx="4" style="fill:var(--shot-2)"/><rect x="127" y="108.0" width="8" height="34.1" rx="4" style="fill:var(--shot-2)"/><rect x="142" y="113.9" width="8" height="22.1" rx="4" style="fill:var(--shot-2)"/><rect x="157" y="96.0" width="8" height="58.0" rx="4" style="fill:var(--accent)"/><rect x="172" y="82.3" width="8" height="85.4" rx="4" style="fill:var(--accent)"/><rect x="187" y="78.4" width="8" height="93.2" rx="4" style="fill:var(--accent)"/><rect x="202" y="87.3" width="8" height="75.5" rx="4" style="fill:var(--accent)"/><rect x="217" y="109.3" width="8" height="31.3" rx="4" style="fill:var(--accent)"/><rect x="232" y="107.0" width="8" height="36.0" rx="4" style="fill:var(--accent)"/><rect x="247" y="92.0" width="8" height="65.9" rx="4" style="fill:var(--accent)"/><rect x="262" y="87.2" width="8" height="75.5" rx="4" style="fill:var(--shot-2)"/><rect x="277" y="92.3" width="8" height="65.4" rx="4" style="fill:var(--shot-2)"/><rect x="292" y="104.0" width="8" height="42.1" rx="4" style="fill:var(--shot-2)"/><rect x="307" y="117.3" width="8" height="15.4" rx="4" style="fill:var(--shot-2)"/><rect x="322" y="110.2" width="8" height="29.6" rx="4" style="fill:var(--shot-2)"/><rect x="337" y="105.3" width="8" height="39.5" rx="4" style="fill:var(--shot-2)"/>
+            <rect class="a-bar" x="52" y="119.0" width="8" height="12.0" rx="4" style="--bd:137ms;fill:var(--shot-2)"/><rect class="a-bar" x="67" y="110.6" width="8" height="28.8" rx="4" style="--bd:274ms;fill:var(--shot-2)"/><rect class="a-bar" x="82" y="101.8" width="8" height="46.4" rx="4" style="--bd:411ms;fill:var(--shot-2)"/><rect class="a-bar" x="97" y="96.6" width="8" height="56.9" rx="4" style="--bd:548ms;fill:var(--shot-2)"/><rect class="a-bar" x="112" y="98.2" width="8" height="53.6" rx="4" style="--bd:685ms;fill:var(--shot-2)"/><rect class="a-bar" x="127" y="108.0" width="8" height="34.1" rx="4" style="--bd:822ms;fill:var(--shot-2)"/><rect class="a-bar" x="142" y="113.9" width="8" height="22.1" rx="4" style="--bd:59ms;fill:var(--shot-2)"/><rect class="a-bar" x="157" y="96.0" width="8" height="58.0" rx="4" style="--bd:196ms;fill:var(--accent)"/><rect class="a-bar" x="172" y="82.3" width="8" height="85.4" rx="4" style="--bd:333ms;fill:var(--accent)"/><rect class="a-bar" x="187" y="78.4" width="8" height="93.2" rx="4" style="--bd:470ms;fill:var(--accent)"/><rect class="a-bar" x="202" y="87.3" width="8" height="75.5" rx="4" style="--bd:607ms;fill:var(--accent)"/><rect class="a-bar" x="217" y="109.3" width="8" height="31.3" rx="4" style="--bd:744ms;fill:var(--accent)"/><rect class="a-bar" x="232" y="107.0" width="8" height="36.0" rx="4" style="--bd:881ms;fill:var(--accent)"/><rect class="a-bar" x="247" y="92.0" width="8" height="65.9" rx="4" style="--bd:118ms;fill:var(--accent)"/><rect class="a-bar" x="262" y="87.2" width="8" height="75.5" rx="4" style="--bd:255ms;fill:var(--shot-2)"/><rect class="a-bar" x="277" y="92.3" width="8" height="65.4" rx="4" style="--bd:392ms;fill:var(--shot-2)"/><rect class="a-bar" x="292" y="104.0" width="8" height="42.1" rx="4" style="--bd:529ms;fill:var(--shot-2)"/><rect class="a-bar" x="307" y="117.3" width="8" height="15.4" rx="4" style="--bd:666ms;fill:var(--shot-2)"/><rect class="a-bar" x="322" y="110.2" width="8" height="29.6" rx="4" style="--bd:803ms;fill:var(--shot-2)"/><rect class="a-bar" x="337" y="105.3" width="8" height="39.5" rx="4" style="--bd:40ms;fill:var(--shot-2)"/>
             <text x="14" y="24" style="fill:var(--muted);font:12px var(--mono)">listening…</text>
             <text x="386" y="236" text-anchor="end" style="fill:var(--muted);font:12px var(--mono)">"open youtube"</text>
           </svg>
@@ -768,11 +796,12 @@
             <rect x="172" y="74" width="110" height="10" rx="5" style="fill:var(--shot-2)"/>
             <rect x="172" y="98" width="80" height="10" rx="5" style="fill:var(--shot-2)"/>
             <rect x="172" y="122" width="96" height="10" rx="5" style="fill:var(--shot-2)"/>
-            <rect x="166" y="66" width="122" height="26" style="fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:5 4"/>
-            <rect x="166" y="114" width="108" height="26" style="fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:5 4"/>
+            <rect class="a-march" x="166" y="66" width="122" height="26" style="fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:5 4"/>
+            <rect class="a-march" x="166" y="114" width="108" height="26" style="fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:5 4"/>
+            <rect class="a-scan a-scan-id" x="84" y="45" width="232" height="2" style="fill:var(--accent);opacity:.55"/>
             <rect x="98" y="160" width="150" height="14" rx="3" style="fill:var(--shot-2)"/>
-            <circle cx="308" cy="186" r="22" style="fill:#2f9e6a"/>
-            <path d="M297 186l8 8 14-15" style="fill:none;stroke:#fff;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round"/>
+            <g class="a-pop" style="--ad:900ms"><circle cx="308" cy="186" r="22" style="fill:#2f9e6a"/>
+            <path class="a-draw" pathLength="1" d="M297 186l8 8 14-15" style="--ad:1200ms;--dur:.5s;fill:none;stroke:#fff;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round"/></g>
             <text x="14" y="24" style="fill:var(--muted);font:12px var(--mono)">OCR scan</text>
           </svg>
           <span class="peek" aria-hidden="true">View details<svg><use href="#i-arrow"/></svg></span>
@@ -1328,6 +1357,9 @@
       es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
     targets.forEach(function (el) { if (!el.classList.contains('chips') && !el.classList.contains('metrics')) el.classList.add('reveal'); io.observe(el); });
+
+    // ShadowFix slider sweeps unless motion is reduced
+    if (reduce) document.querySelectorAll('.sf-anim').forEach(function (a) { a.parentNode.removeChild(a); });
 
     // Count up the hero numbers
     document.querySelectorAll('.fact b').forEach(function (b) {
