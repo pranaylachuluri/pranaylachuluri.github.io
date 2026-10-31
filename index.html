@@ -445,6 +445,75 @@
     .gallery { grid-template-columns: 1fr; }
   }
   body.pd-lock { overflow: hidden; }
+
+  /* ---------- Motion ---------- */
+  .scroll-bar { position: fixed; top: 0; left: 0; height: 2px; width: 100%; transform-origin: 0 50%; transform: scaleX(0); background: var(--accent); z-index: 20; pointer-events: none; }
+  .nav ul a { position: relative; transition: color .2s; }
+  .nav ul a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px; background: var(--accent); transform: scaleX(0); transform-origin: 0 50%; transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+  .nav ul a:hover::after, .nav ul a.on::after { transform: scaleX(1); }
+  .nav ul a.on { color: var(--fg); }
+
+  .hero { position: relative; isolation: isolate; }
+  .hero-net { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: .55;
+    -webkit-mask-image: radial-gradient(ellipse 70% 75% at 35% 45%, #000 30%, transparent 78%); mask-image: radial-gradient(ellipse 70% 75% at 35% 45%, #000 30%, transparent 78%); }
+  .typed { margin: -6px 0 0; font: 500 0.95rem/1.4 var(--mono); color: var(--muted); min-height: 1.4em; }
+  .typed b { color: var(--fg); font-weight: 500; }
+  .caret { display: inline-block; width: 2px; height: 1.05em; background: var(--accent); vertical-align: -2px; margin-left: 2px; animation: caret 1s steps(1) infinite; }
+  @keyframes caret { 50% { opacity: 0; } }
+  .avatar { transition: transform .6s cubic-bezier(.2,.8,.2,1), box-shadow .6s; }
+  .avatar::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--fg) 8%, transparent); pointer-events: none; }
+  .avatar:hover { transform: translateY(-4px); box-shadow: 0 24px 60px -30px color-mix(in srgb, var(--accent) 60%, transparent); }
+
+  .js .h1-word { display: inline-block; opacity: 0; transform: translateY(0.45em); animation: rise .8s cubic-bezier(.2,.8,.2,1) forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  .marquee { overflow: hidden; border-block: 1px solid var(--line); padding-block: 14px; margin-top: 8px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .marquee .track { display: flex; gap: 40px; width: max-content; animation: marquee 48s linear infinite; font: 500 0.86rem/1 var(--mono); color: var(--muted); white-space: nowrap; }
+  .marquee .track span { display: inline-flex; align-items: center; gap: 40px; }
+  .marquee .track span::after { content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); opacity: .6; }
+  .marquee:hover .track { animation-play-state: paused; }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  .js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s cubic-bezier(.2,.8,.2,1), transform .8s cubic-bezier(.2,.8,.2,1); transition-delay: var(--d, 0ms); }
+  .js .reveal.in { opacity: 1; transform: none; }
+
+  .project .shot { transition: transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s; }
+  .project:hover .shot { transform: translateY(-4px); box-shadow: 0 22px 50px -28px color-mix(in srgb, var(--fg) 45%, transparent); }
+  .spot { position: relative; }
+  .spot::before { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s;
+    background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%); }
+  .spot:hover::before { opacity: 1; }
+  .more .card { transition: border-color .25s, transform .35s cubic-bezier(.2,.8,.2,1); }
+  .more .card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+  .js .metrics li, .js .chips li { opacity: 0; transform: translateY(6px) scale(.97); transition: opacity .45s, transform .45s cubic-bezier(.2,.8,.2,1), border-color .2s, color .2s; transition-delay: var(--d, 0ms); }
+  .js .in .metrics li, .js .in .chips li, .js .metrics.in li, .js .chips.in li { opacity: 1; transform: none; }
+  .chips li:hover { border-color: var(--accent); color: var(--accent); }
+
+  .timeline { position: relative; }
+  .tl-line { position: absolute; left: -18px; top: 0; bottom: 0; width: 2px; background: var(--line); border-radius: 2px; }
+  .tl-line i { position: absolute; left: 0; top: 0; width: 100%; height: 100%; transform-origin: 0 0; transform: scaleY(var(--p, 0)); background: linear-gradient(var(--accent), color-mix(in srgb, var(--accent) 30%, transparent)); border-radius: 2px; }
+  @media (max-width: 1180px) { .tl-line { display: none; } }
+
+  /* Coursework */
+  .courses { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .course { display: grid; gap: 10px; align-content: start; padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); transition: border-color .25s, transform .35s cubic-bezier(.2,.8,.2,1); }
+  .course:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
+  .course .c-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .course .code { font: 500 0.76rem/1 var(--mono); color: var(--accent); letter-spacing: .04em; }
+  .course h3 { font-size: 1.12rem; }
+  .course ul { margin: 0; padding-left: 1.1em; display: grid; gap: 5px; color: var(--muted); font-size: .92rem; }
+  .course ul b { color: var(--fg); font-weight: 600; }
+  .course .p-links a { padding: 6px 10px; font-size: .8rem; }
+  .also { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+  .also > span { font: 400 0.78rem/1 var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-right: 4px; }
+  @media (max-width: 820px) { .courses { grid-template-columns: 1fr; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-net, .scroll-bar { display: none; }
+    .marquee .track, .caret { animation: none; }
+    .js .h1-word, .js .reveal, .js .metrics li, .js .chips li { opacity: 1; transform: none; animation: none; }
+  }
 </style>
 </head>
 <body>
@@ -464,6 +533,7 @@
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#education">Education</a></li>
+      <li><a href="#coursework">Coursework</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -471,10 +541,12 @@
 
 <main id="top" class="wrap">
   <section class="hero" aria-label="Introduction">
+    <canvas class="hero-net" aria-hidden="true"></canvas>
     <div class="hero-text">
       <span class="eyebrow">Open to AI/ML, software engineering &amp; data science roles</span>
       <h1>I build models that <em>see</em> the world.</h1>
       <p class="lede">I'm Pranay, a software and machine learning engineer focused on <strong>AI and computer vision</strong>. I'm doing my MS in Computer Science (AI/ML) at the <strong>University at Buffalo</strong>, where I work on multi-sensor optical and infrared sensing for autonomous plastic sorting.</p>
+      <p class="typed" aria-hidden="true">Currently working on <b id="typed">multi-sensor plastic sensing</b><span class="caret"></span></p>
       <div class="cta">
         <a class="btn primary" href="#projects">View projects</a>
         <a class="btn" href="https://github.com/pranaylachuluri" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>GitHub</a>
@@ -492,6 +564,9 @@
     </div>
     <div class="spectrum" aria-hidden="true"></div>
   </section>
+
+
+  <div class="marquee" aria-hidden="true"><div class="track"><span>PyTorch</span><span>TensorFlow</span><span>YOLOv8</span><span>U-Net</span><span>Vision Transformers</span><span>OpenCV</span><span>MediaPipe</span><span>scikit-learn</span><span>PySpark</span><span>ROS 2</span><span>Hyperspectral imaging</span><span>Gradio</span><span>Flask</span><span>Hugging Face</span><span>PyTorch</span><span>TensorFlow</span><span>YOLOv8</span><span>U-Net</span><span>Vision Transformers</span><span>OpenCV</span><span>MediaPipe</span><span>scikit-learn</span><span>PySpark</span><span>ROS 2</span><span>Hyperspectral imaging</span><span>Gradio</span><span>Flask</span><span>Hugging Face</span></div></div>
 
   <section id="about" class="section about" aria-labelledby="h-about">
     <div class="sec-head"><h2 id="h-about">About me</h2></div>
@@ -768,7 +843,7 @@
         <div>
           <h3>Data Science Intern</h3>
           <div class="where">YHills · Remote</div>
-          <p>Built fraud, taxi fare and vaccination prediction models with 99%, 97% and 85% accuracy, comparing tree ensembles, SVMs and regression.</p>
+          <p>Built and compared classic ML models: fraud detection at 99.2% accuracy with XGBoost, H1N1 vaccination prediction at 82.6%, and taxi fare regression at R² 0.76 with tree ensembles.</p>
         </div>
       </li>
     </ol>
@@ -782,7 +857,7 @@
         <div>
           <h3>MS, Computer Science (AI/ML)</h3>
           <div class="where">University at Buffalo, SUNY · GPA 3.7</div>
-          <p>Deep Learning, Computer Vision &amp; Image Processing, Statistical Data Mining, Data-Intensive Computing, Computer Security.</p>
+          <p>Deep Learning, Computer Vision &amp; Image Processing, Statistical Data Mining, Data-Intensive Computing, Computer Security. <a href="#coursework">See what I built in each course</a>.</p>
         </div>
       </li>
       <li class="job">
@@ -793,6 +868,53 @@
         </div>
       </li>
     </ol>
+  </section>
+
+
+  <section id="coursework" class="section" aria-labelledby="h-course">
+    <div class="sec-head"><h2 id="h-course">Coursework at UB</h2><p>MS Computer Science (AI/ML), what I built in each course.</p></div>
+    <div class="courses">
+      <article class="course spot">
+        <div class="c-top"><span class="code">CSE 676</span></div>
+        <h3>Deep Learning</h3>
+        <ul>
+          <li><b>Vision Transformer from scratch</b> on CIFAR-10, with ablations on patch size, depth and positional encoding (patch 8 → 2 lifts accuracy from 40.4% to 49.3%).</li>
+          <li><b>Character-level GPT</b> with causal self-attention, trained on Tiny Shakespeare.</li>
+        </ul>
+        <div class="p-links"><a href="https://github.com/pranaylachuluri/deeplearningasignment_50652406" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>ViT code</a><a href="https://github.com/pranaylachuluri/deeplearning_fina" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>GPT code</a></div>
+      </article>
+      <article class="course spot">
+        <div class="c-top"><span class="code">CSE 574</span></div>
+        <h3>Introduction to Machine Learning</h3>
+        <ul>
+          <li><b>CNN for 36-class handwritten characters</b>: 91.1% test accuracy and 0.91 F1 on 10,080 test images.</li>
+          <li><b>ResNet-34 from scratch</b> with augmentation and hyperparameter search, plus feature-map and weight visualisations for interpretability.</li>
+          <li><b>Logistic regression from scratch</b> and a reusable preprocessing pipeline.</li>
+        </ul>
+        <div class="p-links"><a href="https://github.com/pranaylachuluri/IML-Assignment-1" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Preprocessing code</a></div>
+      </article>
+      <article class="course spot">
+        <div class="c-top"><span class="code">CSE 565</span></div>
+        <h3>Computer Security</h3>
+        <ul>
+          <li><b>Adversarial ML</b>: FGSM and PGD attacks on a ResNet-50 image classifier.</li>
+          <li><b>LLM security</b>: jailbreak attacks on StableLM-3B and indirect prompt injection against Qwen2.5, with defences.</li>
+          <li><b>Classic attacks</b>: breaking a substitution cipher with frequency analysis, and SQL injection on a web app.</li>
+        </ul>
+      </article>
+      <article class="course spot">
+        <div class="c-top"><span class="code">CSE 587</span></div>
+        <h3>Data-Intensive Computing</h3>
+        <ul>
+          <li><b>PageRank from scratch on Spark RDDs</b>, with link-removal and damping-factor experiments.</li>
+          <li><b>NASA web-log analytics</b> and WordCount in PySpark, read through the Spark UI's DAGs and stages.</li>
+          <li><b>Big-data cleaning</b> of a historical S&amp;P 500 dataset with pandas.</li>
+        </ul>
+      </article>
+    </div>
+    <div class="also"><span>Also</span><ul class="chips">
+      <li>CSE 573 Computer Vision &amp; Image Processing</li><li>EAS 507 Statistical Data Mining II</li><li>CSE 560 Data Models &amp; Query Languages</li><li>CSE 531 Analysis of Algorithms</li><li>CSE 521 Operating Systems (Pintos)</li><li>CSE 610 Human-Computer Interaction</li>
+    </ul></div>
   </section>
 
   <section id="contact" class="contact" aria-labelledby="h-contact">
@@ -1134,6 +1256,167 @@
 
     var m = location.hash.match(/^#project-([\w-]+)$/);
     if (m) open(m[1]);
+  })();
+</script>
+
+<script>
+  // Motion: scroll progress, hero network, typed line, reveals, counters, spotlight, timeline fill
+  (function () {
+    var root = document.documentElement;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) return;
+    root.classList.add('js');
+
+    var bar = document.createElement('div');
+    bar.className = 'scroll-bar';
+    document.body.appendChild(bar);
+
+    // Headline words rise in one after another
+    var h1 = document.querySelector('.hero h1');
+    if (h1) {
+      var i = 0;
+      (function wrap(node) {
+        Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+          if (n.nodeType === 3) {
+            var frag = document.createDocumentFragment();
+            n.textContent.split(/(\s+)/).forEach(function (w) {
+              if (!w) return;
+              if (/^\s+$/.test(w)) { frag.appendChild(document.createTextNode(w)); return; }
+              var s = document.createElement('span');
+              s.className = 'h1-word';
+              s.style.animationDelay = (120 + i++ * 70) + 'ms';
+              s.textContent = w;
+              frag.appendChild(s);
+            });
+            n.parentNode.replaceChild(frag, n);
+          } else if (n.nodeType === 1) { wrap(n); }
+        });
+      })(h1);
+    }
+
+    // Typed line
+    var typed = document.getElementById('typed');
+    if (typed) {
+      var words = ['multi-sensor plastic sensing', 'computer vision models', 'deep learning from scratch', 'ML demos people can try'];
+      var wi = 0, ci = words[0].length, del = true;
+      setTimeout(function tick() {
+        var w = words[wi];
+        if (del) { ci--; if (ci === 0) { del = false; wi = (wi + 1) % words.length; } }
+        else { ci++; if (ci === words[wi].length) { del = true; typed.textContent = words[wi]; return setTimeout(tick, 2200); } }
+        typed.textContent = words[wi].slice(0, ci);
+        setTimeout(tick, del ? 28 : 55);
+      }, 2600);
+    }
+
+    // Reveal on scroll, with a small stagger inside grids
+    var targets = [];
+    document.querySelectorAll('.section .sec-head, .about-text > *, .about-facts, .project, .more .card, .course, .also, .group, .job, .contact > *').forEach(function (el) { targets.push(el); });
+    document.querySelectorAll('.projects, .more, .courses, .skills, .timeline').forEach(function (g) {
+      Array.prototype.forEach.call(g.children, function (c, k) { c.style.setProperty('--d', Math.min(k, 5) * 90 + 'ms'); });
+    });
+    document.querySelectorAll('.chips, .metrics').forEach(function (g) {
+      Array.prototype.forEach.call(g.children, function (c, k) { c.style.setProperty('--d', 150 + k * 40 + 'ms'); });
+      targets.push(g);
+    });
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    targets.forEach(function (el) { if (!el.classList.contains('chips') && !el.classList.contains('metrics')) el.classList.add('reveal'); io.observe(el); });
+
+    // Count up the hero numbers
+    document.querySelectorAll('.fact b').forEach(function (b) {
+      var m = b.textContent.match(/^([\d.]+)(.*)$/);
+      if (!m) return;
+      var end = parseFloat(m[1]), dec = (m[1].split('.')[1] || '').length, suf = m[2], t0 = null;
+      b.textContent = (0).toFixed(dec) + suf;
+      setTimeout(function () {
+        requestAnimationFrame(function step(ts) {
+          if (!t0) t0 = ts;
+          var k = Math.min((ts - t0) / 1400, 1), v = end * (1 - Math.pow(1 - k, 3));
+          b.textContent = v.toFixed(dec) + suf;
+          if (k < 1) requestAnimationFrame(step);
+        });
+      }, 500);
+    });
+
+    // Cursor spotlight on cards
+    document.querySelectorAll('.more .card, .course').forEach(function (c) {
+      c.classList.add('spot');
+      c.addEventListener('pointermove', function (e) {
+        var r = c.getBoundingClientRect();
+        c.style.setProperty('--mx', e.clientX - r.left + 'px');
+        c.style.setProperty('--my', e.clientY - r.top + 'px');
+      });
+    });
+
+    // Timeline line fills as you scroll past it
+    var lines = [];
+    document.querySelectorAll('.timeline').forEach(function (tl) {
+      var l = document.createElement('span');
+      l.className = 'tl-line';
+      l.innerHTML = '<i></i>';
+      tl.appendChild(l);
+      lines.push(tl);
+    });
+
+    // Active nav link and scroll progress
+    var links = Array.prototype.slice.call(document.querySelectorAll('.nav ul a'));
+    var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+    var ticking = false;
+    function onScroll() {
+      ticking = false;
+      var h = root.scrollHeight - innerHeight;
+      bar.style.transform = 'scaleX(' + (h > 0 ? scrollY / h : 0) + ')';
+      var cur = -1;
+      secs.forEach(function (s, k) { if (s && s.getBoundingClientRect().top < innerHeight * 0.35) cur = k; });
+      links.forEach(function (a, k) { a.classList.toggle('on', k === cur); });
+      lines.forEach(function (tl) {
+        var r = tl.getBoundingClientRect();
+        var p = Math.max(0, Math.min(1, (innerHeight * 0.7 - r.top) / r.height));
+        tl.lastChild.style.setProperty('--p', p);
+      });
+    }
+    addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+    addEventListener('resize', onScroll);
+    onScroll();
+
+    // Hero background: a slow network of nodes, in the accent colour
+    var cv = document.querySelector('.hero-net');
+    if (cv && cv.getContext) {
+      var ctx = cv.getContext('2d'), nodes = [], W = 0, H = 0, dpr = Math.min(devicePixelRatio || 1, 2), col = '', visible = true, raf = 0;
+      function size() {
+        var r = cv.getBoundingClientRect();
+        W = r.width; H = r.height;
+        cv.width = W * dpr; cv.height = H * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        var n = Math.round(Math.min(70, W * H / 14000));
+        nodes = [];
+        for (var k = 0; k < n; k++) nodes.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .22, vy: (Math.random() - .5) * .22 });
+        col = getComputedStyle(root).getPropertyValue('--accent').trim() || '#3046ff';
+      }
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        ctx.fillStyle = col; ctx.strokeStyle = col;
+        for (var a = 0; a < nodes.length; a++) {
+          var p = nodes[a];
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > W) p.vx *= -1;
+          if (p.y < 0 || p.y > H) p.vy *= -1;
+          for (var b = a + 1; b < nodes.length; b++) {
+            var q = nodes[b], dx = p.x - q.x, dy = p.y - q.y, d = dx * dx + dy * dy;
+            if (d < 16000) { ctx.globalAlpha = (1 - d / 16000) * .35; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
+          }
+          ctx.globalAlpha = .55; ctx.beginPath(); ctx.arc(p.x, p.y, 1.6, 0, 6.283); ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+        raf = visible ? requestAnimationFrame(draw) : 0;
+      }
+      size();
+      new IntersectionObserver(function (es) { visible = es[0].isIntersecting; if (visible && !raf) raf = requestAnimationFrame(draw); }).observe(cv);
+      addEventListener('resize', size);
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', size);
+      raf = requestAnimationFrame(draw);
+    }
   })();
 </script>
 </body>
