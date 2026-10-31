@@ -435,6 +435,15 @@
   .term .u { color: #7fd1ff; } .term .j { color: #9be29b; } .term .c { color: #6b7686; }
   .pd-links { display: flex; flex-wrap: wrap; gap: 10px; }
   .pd-note { font-size: .82rem; color: var(--muted); border-left: 3px solid var(--line); padding-left: 12px; }
+  .tp { position: fixed; inset: 0; z-index: 60; display: none; place-items: center; padding: 18px; background: rgba(6,8,11,.78); backdrop-filter: blur(4px); cursor: zoom-out; }
+  .tp.on { display: grid; animation: tpIn .18s ease-out; }
+  .tp figure { position: relative; margin: 0; width: min(880px, 100%); cursor: default; }
+  .tp img { display: block; width: 100%; height: auto; border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+  .tp .tp-x { position: absolute; top: -14px; right: -10px; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--fg); font: 600 18px/1 var(--body); cursor: pointer; }
+  @keyframes tpIn { from { opacity: 0; transform: scale(.97); } to { opacity: 1; transform: none; } }
+  .card[data-thumb] { cursor: zoom-in; }
+  .card .tp-btn { font: 500 .8rem/1 var(--body); padding: 7px 11px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--fg); cursor: pointer; }
+  .card .tp-btn:hover { border-color: var(--accent); color: var(--accent); }
   .lb { position: fixed; inset: 0; z-index: 2; display: none; place-items: center; background: rgba(6,8,11,.92); padding: 18px; cursor: zoom-out; }
   .lb.on { display: grid; }
   .lb img { max-width: 100%; max-height: calc(100dvh - 90px); object-fit: contain; border-radius: 6px; }
@@ -826,23 +835,23 @@
 
     <div class="sec-head" style="margin-top:20px"><h3>Coursework projects</h3></div>
     <ul class="more">
-      <li class="card"><div><b>AI Security Labs</b><span>PyTorch · Hugging Face · OpenSSL · SQL</span></div><p>FGSM/PGD attacks on a ResNet-50 classifier, LLM jailbreaks, and a hidden-HTML prompt injection that hijacked Qwen2.5 in 60% of runs until filtering, prompt hardening and output validation blocked it.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/ai-security-labs" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a></div></li>
-      <li class="card"><div><b>PageRank &amp; Log Analytics on Spark</b><span>PySpark · RDDs</span></div><p>PageRank from scratch with link-removal and damping-factor experiments, and analytics over 1.9 M NASA web-server requests.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/pyspark-data-processing" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a></div></li>
-          <li class="card"><div><b>Pintos OS Kernel · team kernelcrew</b><span>C · x86 · CSE 521</span></div><p>Team of 3: preemptive priority scheduling, a sleep-queue alarm clock instead of busy-waiting, argument passing and system calls (exec, wait, file descriptors) with user-pointer validation. Code private under course policy.</p></li>
-      <li class="card"><div><b>CNNs from Scratch: VGG-13 &amp; ResNet-34</b><span>PyTorch · CSE 574</span></div><p>VGG-13 (91.9%) and a custom CNN (91.1%) for 36-class handwritten characters, ResNet-34 on Flowers-102, plus regression models in NumPy and n-step Double Q-learning.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/intro-ml-assignments" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a></div></li>
-      <li class="card"><div><b>Vision Transformer Ablations</b><span>PyTorch · CSE 676</span></div><p>ViT on CIFAR-10 with patch-size, depth and positional-embedding ablations; 2×2 patches reached 49.3%.</p></li>
-      <li class="card"><div><b>Camera Calibration</b><span>Python · OpenCV · CSE 573</span></div><p>Euler-angle rotation matrices and checkerboard calibration recovering intrinsic and extrinsic camera parameters.</p></li>
-      <li class="card"><div><b>Hospital Database</b><span>SQL · CSE 560</span></div><p>Six-table schema with primary, foreign and circular keys, and join and aggregation queries over appointments and prescriptions.</p></li>
-      <li class="card"><div><b>Bayesian Network Learning</b><span>R · EAS 507</span></div><p>Hill-climbing structure learning on coronary-artery-disease data, v-structure analysis and conditional probability tables.</p></li>
+      <li class="card" data-thumb="ai-security"><div><b>AI Security Labs</b><span>PyTorch · Hugging Face · OpenSSL · SQL</span></div><p>FGSM/PGD attacks on a ResNet-50 classifier, LLM jailbreaks, and a hidden-HTML prompt injection that hijacked Qwen2.5 in 60% of runs until filtering, prompt hardening and output validation blocked it.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/ai-security-labs" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a></div></li>
+      <li class="card" data-thumb="pagerank"><div><b>PageRank &amp; Log Analytics on Spark</b><span>PySpark · RDDs</span></div><p>PageRank from scratch with link-removal and damping-factor experiments, and analytics over 1.9 M NASA web-server requests.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/pyspark-data-processing" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a></div></li>
+          <li class="card" data-thumb="pintos"><div><b>Pintos OS Kernel · team kernelcrew</b><span>C · x86 · CSE 521</span></div><p>Team of 3: preemptive priority scheduling, a sleep-queue alarm clock instead of busy-waiting, argument passing and system calls (exec, wait, file descriptors) with user-pointer validation. Code private under course policy.</p></li>
+      <li class="card" data-thumb="cnn"><div><b>CNNs from Scratch: VGG-13 &amp; ResNet-34</b><span>PyTorch · CSE 574</span></div><p>VGG-13 (91.9%) and a custom CNN (91.1%) for 36-class handwritten characters, ResNet-34 on Flowers-102, plus regression models in NumPy and n-step Double Q-learning.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/intro-ml-assignments" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a></div></li>
+      <li class="card" data-thumb="vit"><div><b>Vision Transformer Ablations</b><span>PyTorch · CSE 676</span></div><p>ViT on CIFAR-10 with patch-size, depth and positional-embedding ablations; 2×2 patches reached 49.3%.</p></li>
+      <li class="card" data-thumb="camera"><div><b>Camera Calibration</b><span>Python · OpenCV · CSE 573</span></div><p>Euler-angle rotation matrices and checkerboard calibration recovering intrinsic and extrinsic camera parameters.</p></li>
+      <li class="card" data-thumb="hospital"><div><b>Hospital Database</b><span>SQL · CSE 560</span></div><p>Six-table schema with primary, foreign and circular keys, and join and aggregation queries over appointments and prescriptions.</p></li>
+      <li class="card" data-thumb="bayes"><div><b>Bayesian Network Learning</b><span>R · EAS 507</span></div><p>Hill-climbing structure learning on coronary-artery-disease data, v-structure analysis and conditional probability tables.</p></li>
     </ul>
 
     <div class="sec-head" style="margin-top:20px"><h3>Software, web &amp; data</h3></div>
     <ul class="more">
-      <li class="card"><div><b>Star Wars Planets</b><span>React · REST API</span></div><p>Browse planets from the Star Wars API, with a details view for each one.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/starwars-planets" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a><a href="https://starwars-planets-rouge.vercel.app/" target="_blank" rel="noopener"><svg><use href="#i-arrow"/></svg>Live</a></div></li>
-      <li class="card"><div><b>AirPods Website</b><span>HTML · SCSS · JavaScript</span></div><p>Responsive animated product page with a purchase flow.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/Airpods-website" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a><a href="https://pranaylachuluri.github.io/Airpods-website/" target="_blank" rel="noopener"><svg><use href="#i-arrow"/></svg>Live</a></div></li>
-      <li class="card"><div><b>Blackjack</b><span>JavaScript</span></div><p>Browser card game: draw until you hit 21 without going over.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/Black-Jack" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a><a href="https://pranaylachuluri.github.io/Black-Jack/" target="_blank" rel="noopener"><svg><use href="#i-arrow"/></svg>Live</a></div></li>
-      <li class="card"><div><b>ML Model Collection</b><span>Python · Scikit-learn</span></div><p>Four models from my data science internship: fraud detection at 99.2% accuracy (XGBoost), H1N1 vaccination at 82.6%, and taxi fares at R² 0.76.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/Machine-Learning-Models" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a></div></li>
-      <li class="card"><div><b>Minutes Life</b><span>Kotlin · Android</span></div><p>Android app that tells you your age in minutes from a picked birthday.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/MinutesLife-App" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a></div></li>
+      <li class="card" data-thumb="starwars"><div><b>Star Wars Planets</b><span>React · REST API</span></div><p>Browse planets from the Star Wars API, with a details view for each one.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/starwars-planets" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a><a href="https://starwars-planets-rouge.vercel.app/" target="_blank" rel="noopener"><svg><use href="#i-arrow"/></svg>Live</a></div></li>
+      <li class="card" data-thumb="airpods"><div><b>AirPods Website</b><span>HTML · SCSS · JavaScript</span></div><p>Responsive animated product page with a purchase flow.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/Airpods-website" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a><a href="https://pranaylachuluri.github.io/Airpods-website/" target="_blank" rel="noopener"><svg><use href="#i-arrow"/></svg>Live</a></div></li>
+      <li class="card" data-thumb="blackjack"><div><b>Blackjack</b><span>JavaScript</span></div><p>Browser card game: draw until you hit 21 without going over.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/Black-Jack" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a><a href="https://pranaylachuluri.github.io/Black-Jack/" target="_blank" rel="noopener"><svg><use href="#i-arrow"/></svg>Live</a></div></li>
+      <li class="card" data-thumb="ml-models"><div><b>ML Model Collection</b><span>Python · Scikit-learn</span></div><p>Four models from my data science internship: fraud detection at 99.2% accuracy (XGBoost), H1N1 vaccination at 82.6%, and taxi fares at R² 0.76.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/Machine-Learning-Models" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a></div></li>
+      <li class="card" data-thumb="minutes-life"><div><b>Minutes Life</b><span>Kotlin · Android</span></div><p>Android app that tells you your age in minutes from a picked birthday.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/MinutesLife-App" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a></div></li>
     </ul>
   </section>
 
@@ -1022,6 +1031,7 @@
 </main>
 
 <!-- Project details, opened from the project cards -->
+<div class="tp" id="tp" role="dialog" aria-modal="true" aria-label="Project preview"><figure><img alt=""><button class="tp-x" type="button" aria-label="Close preview">×</button></figure></div>
 <dialog class="pd" id="pd" aria-labelledby="pd-title">
   <div class="pd-head">
     <div><h2 id="pd-title"></h2><p id="pd-sub"></p></div>
@@ -1285,6 +1295,32 @@
       var fallback = function () { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent = 'Selected'; };
       try { navigator.clipboard.writeText(el.textContent).then(done, fallback); } catch (e) { fallback(); }
     });
+  })();
+</script>
+<script>
+  // Smaller projects: clicking one opens a pop-up with its summary card
+  (function () {
+    var tp = document.getElementById('tp');
+    if (!tp) return;
+    var img = tp.querySelector('img'), from = null;
+    function show(card) {
+      from = card;
+      img.src = 'images/thumbs/' + card.dataset.thumb + '.jpg';
+      img.alt = card.querySelector('b').textContent + ' summary card';
+      tp.classList.add('on');
+      tp.querySelector('.tp-x').focus();
+    }
+    function hide() { tp.classList.remove('on'); if (from) { var b = from.querySelector('.tp-btn'); if (b) b.focus(); } }
+    document.querySelectorAll('.card[data-thumb]').forEach(function (card) {
+      var links = card.querySelector('.p-links');
+      if (!links) { links = document.createElement('div'); links.className = 'p-links'; card.appendChild(links); }
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'tp-btn'; b.textContent = 'Preview';
+      links.insertBefore(b, links.firstChild);
+      card.addEventListener('click', function (e) { if (!e.target.closest('a')) show(card); });
+    });
+    tp.addEventListener('click', function (e) { if (e.target === tp || e.target.closest('.tp-x')) hide(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && tp.classList.contains('on')) hide(); });
   })();
 </script>
 <script>
