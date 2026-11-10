@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pranay Lachuluri Portfolio</title>
 <meta name="description" content="Pranay Lachuluri, ML engineer focused on computer vision. MS Computer Science (AI/ML) at the University at Buffalo.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pranaylachuluri.github.io/">
+<meta property="og:title" content="Pranay Lachuluri | ML &amp; Computer Vision">
+<meta property="og:description" content="MS Computer Science (AI/ML) at the University at Buffalo. Computer vision and deep learning projects, research and résumé.">
+<meta property="og:image" content="https://pranaylachuluri.github.io/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pranaylachuluri.github.io/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Archivo:wght@500;700;900&family=Manrope:wght@500;700;800&family=Unbounded:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&display=swap">
@@ -587,8 +596,8 @@
     <div class="hero-text">
       <span class="eyebrow">Open to AI/ML, software engineering &amp; data science roles</span>
       <h1>I build models that <em>see</em> the world.</h1>
-      <p class="lede">I'm Pranay, a software and machine learning engineer focused on <strong>AI and computer vision</strong>. I'm doing my MS in Computer Science (AI/ML) at the <strong>University at Buffalo</strong>, where I work on multi-sensor optical and infrared sensing for autonomous plastic sorting.</p>
-      <p class="typed" aria-hidden="true">Currently working on <b id="typed">multi-sensor plastic sensing</b><span class="caret"></span></p>
+      <p class="lede">I'm Pranay, a software and machine learning engineer focused on <strong>AI and computer vision</strong>. I'm doing my MS in Computer Science (AI/ML) at the <strong>University at Buffalo</strong>, where I'm a graduate research assistant collecting and annotating multi-sensor image data.</p>
+      <p class="typed" aria-hidden="true">Currently working on <b id="typed">multi-sensor image datasets</b><span class="caret"></span></p>
       <div class="cta">
         <a class="btn primary" href="#projects">View projects</a>
         <a class="btn" href="Pranay_Lachuluri_Resume.pdf" target="_blank" rel="noopener"><svg><use href="#i-arrow"/></svg>Résumé</a>
@@ -618,13 +627,13 @@
         <p class="about-lead">I'm a Master's student in Computer Science (AI/ML) at the University at Buffalo. I like turning raw images and sensor data into models that do something useful in the real world.</p>
         <p>My path into AI started during my bachelor's in Computer Science (AI/ML) in Hyderabad. A data science internship got me building and comparing classic models for fraud detection, fare prediction and vaccination forecasting. From there I moved into deep learning and computer vision: real-time sign language recognition with MediaPipe, a U-Net that removes shadows from photos, and a YOLOv8 detector that finds litter in cluttered scenes.</p>
         <p>I care about the whole pipeline, not just the model. That means collecting and cleaning data, choosing the right metrics, training carefully, and then shipping a demo people can try. Most of my projects end with a Gradio or Flask app for exactly that reason.</p>
-        <p>As a graduate research assistant on the ASAP project, I work with a multi-sensor rig of hyperspectral, RGB and thermal cameras and mmWave radar. We're collecting the data that will teach a low-cost system to identify plastics for autonomous recycling. Before grad school I worked at Genpact on a Google/YouTube operations team, where I learned to meet strict quality standards and trained in generative and agentic AI.</p>
+        <p>As a graduate research assistant on the ASAP project, I collect, calibrate and annotate image data from a multi-sensor rig of hyperspectral, RGB and thermal cameras and mmWave radar, labeling it in CVAT and managing it in FiftyOne so it's ready for model training. Before grad school I worked at Genpact on a Google/YouTube operations team, where I learned to meet strict quality standards and trained in generative and agentic AI.</p>
         <p>I'm looking for roles in AI/ML engineering, computer vision, data science and software engineering, where I can keep building things that see, measure and decide.</p>
       </div>
       <dl class="about-facts">
         <div><dt>Based in</dt><dd>Buffalo, NY</dd></div>
         <div><dt>Studying</dt><dd>MS Computer Science (AI/ML), University at Buffalo</dd></div>
-        <div><dt>Research</dt><dd>Multi-sensor plastic sensing (ASAP)</dd></div>
+        <div><dt>Research</dt><dd>Multi-sensor data collection &amp; annotation (ASAP)</dd></div>
         <div><dt>Focus</dt><dd>Computer vision, deep learning, applied ML</dd></div>
         <div><dt>Open to</dt><dd>AI/ML, CV, data science &amp; software roles</dd></div>
       </dl>
@@ -773,7 +782,7 @@
           <div class="tags">Scikit-learn · Pandas · Flask · JavaScript</div>
           <div class="p-links">
             <button class="more-btn" type="button">Details<svg><use href="#i-arrow"/></svg></button>
-            <a href="https://github.com/pranaylachuluri/Car-prize-prediction" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a>
+            <a href="https://github.com/pranaylachuluri/car-price-prediction" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a>
           </div>
         </div>
       </article>
@@ -839,7 +848,7 @@
       <li class="card" data-thumb="pagerank"><div><b>PageRank &amp; Log Analytics on Spark</b><span>PySpark · RDDs</span></div><p>PageRank from scratch with link-removal and damping-factor experiments, and analytics over 1.9 M NASA web-server requests.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/pyspark-data-processing" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a></div></li>
           <li class="card" data-thumb="pintos"><div><b>Pintos OS Kernel · team kernelcrew</b><span>C · x86 · CSE 521</span></div><p>Team of 3: preemptive priority scheduling, a sleep-queue alarm clock instead of busy-waiting, argument passing and system calls (exec, wait, file descriptors) with user-pointer validation. Code private under course policy.</p></li>
       <li class="card" data-thumb="cnn"><div><b>CNNs from Scratch: VGG-13 &amp; ResNet-34</b><span>PyTorch · CSE 574</span></div><p>VGG-13 (91.9%) and a custom CNN (91.1%) for 36-class handwritten characters, ResNet-34 on Flowers-102, plus regression models in NumPy and n-step Double Q-learning.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/intro-ml-assignments" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a></div></li>
-      <li class="card" data-thumb="vit"><div><b>Vision Transformer Ablations</b><span>PyTorch · CSE 676</span></div><p>ViT on CIFAR-10 with patch-size, depth and positional-embedding ablations; 2×2 patches reached 49.3%.</p></li>
+      <li class="card" data-thumb="vit"><div><b>Vision Transformer Ablations</b><span>PyTorch · CSE 676</span></div><p>ViT on CIFAR-10 with patch-size, depth and positional-embedding ablations; 2×2 patches reached 49.3%.</p><div class="p-links"><a href="https://github.com/pranaylachuluri/vision-transformer-from-scratch" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>Code</a></div></li>
       <li class="card" data-thumb="camera"><div><b>Camera Calibration</b><span>Python · OpenCV · CSE 573</span></div><p>Euler-angle rotation matrices and checkerboard calibration recovering intrinsic and extrinsic camera parameters.</p></li>
       <li class="card" data-thumb="hospital"><div><b>Hospital Database</b><span>SQL · CSE 560</span></div><p>Six-table schema with primary, foreign and circular keys, and join and aggregation queries over appointments and prescriptions.</p></li>
       <li class="card" data-thumb="bayes"><div><b>Bayesian Network Learning</b><span>R · EAS 507</span></div><p>Hill-climbing structure learning on coronary-artery-disease data, v-structure analysis and conditional probability tables.</p></li>
@@ -873,12 +882,11 @@
         <div>
           <h3>Graduate Research Assistant</h3>
           <div class="where">University at Buffalo · ASAP (Affordable Scalable Autonomous Plastic-Sort)</div>
-          <p>ASAP is building a low-cost sensing system that identifies plastic types from how they interact with light, so they can be sorted automatically. I'm working in the data-collection phase.</p>
+          <p>ASAP is an ongoing, unpublished research project on automated material sorting. I build and label the datasets its models are trained on.</p>
           <ul class="duties">
-            <li>Run a multi-sensor rig of hyperspectral, RGB and thermal cameras plus a 4-chip mmWave radar on ROS 2.</li>
-            <li>Perform hyperspectral calibration (dark and white references, flat-field reflectance correction), multi-pose checkerboard calibration across cameras, and mmWave range calibration.</li>
-            <li>Capture synchronized static and conveyor-belt recordings of PET, HDPE and LDPE samples across 10 controlled light levels and several belt speeds.</li>
-            <li>Set up CVAT and FiftyOne for annotation and dataset management, toward ML-based polymer classification.</li>
+            <li>Operate a multi-sensor rig of hyperspectral, RGB and thermal cameras and mmWave radar on ROS 2.</li>
+            <li>Calibrate the sensors (hyperspectral reflectance correction, multi-camera checkerboard calibration, radar range calibration) and record synchronized datasets under controlled conditions.</li>
+            <li>Annotate images in CVAT and manage labeled datasets in FiftyOne, preparing training data for detection and classification models.</li>
           </ul>
           <div class="tags">ROS 2 · Hyperspectral imaging · Thermal · mmWave radar · Python · OpenCV · CVAT · FiftyOne</div>
         </div>
@@ -1205,7 +1213,7 @@
       <li><b>App:</b> Flask serves the form and a JSON endpoint that returns clear error messages for invalid inputs.</li>
     </ul>
   </section>
-  <div class="pd-links"><a class="btn primary" href="https://github.com/pranaylachuluri/Car-prize-prediction" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>View code</a></div>
+  <div class="pd-links"><a class="btn primary" href="https://github.com/pranaylachuluri/car-price-prediction" target="_blank" rel="noopener"><svg><use href="#i-gh"/></svg>View code</a></div>
 </template>
 
 <template id="pd-jarvis" data-title="JARVIS Voice Assistant" data-sub="Python desktop voice assistant · 2023">
@@ -1422,7 +1430,7 @@
     // Typed line
     var typed = document.getElementById('typed');
     if (typed) {
-      var words = ['multi-sensor plastic sensing', 'computer vision models', 'shadow removal and restoration', 'ML demos people can try'];
+      var words = ['multi-sensor image datasets', 'computer vision models', 'shadow removal and restoration', 'ML demos people can try'];
       var wi = 0, ci = words[0].length, del = true;
       setTimeout(function tick() {
         var w = words[wi];
